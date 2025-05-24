@@ -1,0 +1,629 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/count-up",
+  "version": "1.0.0",
+  "title": "Count Up",
+  "category": "gutentools",
+  "description": "The CountUp Block displays animated counters to highlight stats, milestones, or achievements. It’s customizable, responsive, and perfect for adding engaging visuals to your site.",
+  "keywords": [
+    "counter, count up"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "headingTag": {
+      "type": "number",
+      "default": "2"
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "layoutStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#efefef"
+    },
+    "countUpPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            35,
+            35,
+            35,
+            35
+          ],
+          "tablet": [
+            35,
+            35,
+            35,
+            35
+          ],
+          "mobile": [
+            35,
+            35,
+            35,
+            35
+          ]
+        }
+      }
+    },
+    "countUpMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "icon": "fa-cog"
+      }
+    },
+    "iconImg": {
+      "type": "object"
+    },
+    "isImgIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "iconBgColor": {
+      "type": "string",
+      "default": "#fcfcfc"
+    },
+    "iconBorder": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "iconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            40,
+            40
+          ],
+          "tablet": [
+            30,
+            30
+          ],
+          "mobile": [
+            30,
+            30
+          ]
+        }
+      }
+    },
+    "iconFontSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 21,
+          "tablet": 21,
+          "mobile": 21
+        }
+      }
+    },
+    "iconRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "prefixText": {
+      "type": "string",
+      "default": ""
+    },
+    "suffixText": {
+      "type": "string",
+      "default": ""
+    },
+    "showCountUpNumber": {
+      "type": "boolean",
+      "default": true
+    },
+    "countUpNumber": {
+      "type": "string",
+      "default": "10000"
+    },
+    "countUpNumberColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "countUpNumberPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "tablet": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "mobile": [
+            20,
+            20,
+            20,
+            20
+          ]
+        }
+      }
+    },
+    "countUpNumberMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "countUpNumberTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 32,
+            "tablet": 32,
+            "mobile": 32
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.2,
+            "tablet": 1.2,
+            "mobile": 1.2
+          }
+        }
+      }
+    },
+    "showHeadingText": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "headingText": {
+      "type": "string",
+      "default": "projects Completed"
+    },
+    "headingTextTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 21,
+            "tablet": 21,
+            "mobile": 21
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.2,
+            "tablet": 1.2,
+            "mobile": 1.2
+          }
+        }
+      }
+    },
+    "headingTextPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "headingTextMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "showSubHeadingText": {
+      "type": "boolean",
+      "default": true
+    },
+    "subHeadingText": {
+      "type": "string",
+      "default": "Curabitur ligula sapien, tincidunt non, euismod vitae"
+    },
+    "subHeadingTextTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 18,
+            "tablet": 18,
+            "mobile": 18
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "subHeadingTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "subHeadingTextPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "subHeadingTextMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            10,
+            0,
+            10,
+            0
+          ],
+          "tablet": [
+            10,
+            0,
+            10,
+            0
+          ],
+          "mobile": [
+            10,
+            0,
+            10,
+            0
+          ]
+        }
+      }
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

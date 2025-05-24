@@ -1,0 +1,357 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/faq",
+  "version": "1.0.0",
+  "title": "FAQ",
+  "category": "gutentools",
+  "description": "Easily add interactive FAQs to your pages. Help users find quick answers with an organized, collapsible layout.",
+  "keywords": [
+    "faq"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "block_id": {
+      "type": "string"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "iconBgColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "itemBgColor": {
+      "type": "string",
+      "default": "#cfcfcf"
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "faqPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "faqMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "faqItemPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "faqItemMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "openIcon": {
+      "type": "object",
+      "default": {
+        "icon": "fa-chevron-up"
+      }
+    },
+    "closeIcon": {
+      "type": "object",
+      "default": {
+        "icon": "fa-chevron-down"
+      }
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "right"
+    },
+    "titleTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 18,
+            "tablet": 18,
+            "mobile": 18
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "iconRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "itemRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "iconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            40,
+            40
+          ],
+          "tablet": [
+            30,
+            30
+          ],
+          "mobile": [
+            30,
+            30
+          ]
+        }
+      }
+    }
+  },
+  "providesContext": {
+    "gutentools/openIcon": "openIcon",
+    "gutentools/closeIcon": "closeIcon",
+    "gutentools/iconColor": "iconColor",
+    "gutentools/iconBgColor": "iconBgColor",
+    "gutentools/iconPosition": "iconPosition",
+    "gutentools/titleTypo": "titleTypo",
+    "gutentools/faqItemMargin": "faqItemMargin",
+    "gutentools/faqItemPadding": "faqItemPadding",
+    "gutentools/iconRadius": "iconRadius",
+    "gutentools/titleColor": "titleColor",
+    "gutentools/iconSize": "iconSize",
+    "gutentools/itemRadius": "itemRadius",
+    "gutentools/itemBgColor": "itemBgColor"
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

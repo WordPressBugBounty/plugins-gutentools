@@ -1,0 +1,693 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/team-member",
+  "version": "1.0.0",
+  "title": "Team Member",
+  "category": "gutentools",
+  "description": "Highlight your team with the Team Member Block. Showcase individual profiles with customizable fields for name, role, bio, and social media links.",
+  "keywords": [
+    "team",
+    "member"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "titleTag": {
+      "type": "number",
+      "default": "2"
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "teamBoxBackground": {
+      "type": "string",
+      "default": "#f7f7f7"
+    },
+    "teamBoxPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            25,
+            25,
+            25,
+            25
+          ],
+          "tablet": [
+            25,
+            25,
+            25,
+            25
+          ],
+          "mobile": [
+            25,
+            25,
+            25,
+            25
+          ]
+        }
+      }
+    },
+    "teamBoxMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "teamBoxBorder": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "teamBoxRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "teamImg": {
+      "type": "object"
+    },
+    "imageSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem",
+          "%"
+        ],
+        "values": {
+          "desktop": [
+            250,
+            250
+          ],
+          "tablet": [
+            250,
+            250
+          ],
+          "mobile": [
+            250,
+            250
+          ]
+        }
+      }
+    },
+    "imageBorder": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "imageBorderRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "imagePadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "imageMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "teamName": {
+      "type": "string",
+      "default": "John Doe"
+    },
+    "teamNameTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 24,
+            "tablet": 24,
+            "mobile": 24
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1,
+            "tablet": 1,
+            "mobile": 1
+          }
+        }
+      }
+    },
+    "teamNamePadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "teamNameMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "teamNameColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "showTeamName": {
+      "type": "boolean",
+      "default": true
+    },
+    "showPosition": {
+      "type": "boolean",
+      "default": true
+    },
+    "positionText": {
+      "type": "string",
+      "default": "CEO/Developer"
+    },
+    "positionColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "positionTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "positionPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "positionMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "showDescription": {
+      "type": "boolean",
+      "default": true
+    },
+    "descriptionText": {
+      "type": "string",
+      "default": "Nullam dictum felis eu pede mollis pretium. Nullam vel sem. Fusce pharetra convallis urna."
+    },
+    "descriptionColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "descriptionTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "descriptionPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "descriptionMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "showSocialLink": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

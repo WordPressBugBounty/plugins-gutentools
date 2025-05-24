@@ -1,0 +1,181 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/star-rating",
+  "version": "1.0.0",
+  "title": "Star Rating",
+  "category": "gutentools",
+  "description": "Add interactive star ratings to your site with the Star Rating Block. Perfect for showcasing reviews or feedback, this block allows users to rate content easily.",
+  "keywords": [
+    "rating",
+    "star"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "block_id": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "rating": {
+      "type": "number",
+      "default": 5
+    },
+    "background": {
+      "type": "string"
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 0,
+          "tablet": 0,
+          "mobile": 0
+        }
+      }
+    },
+    "iconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "ratingPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "ratingMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#ff8e07"
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

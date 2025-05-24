@@ -1,0 +1,424 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/call-to-actions",
+  "version": "1.0.0",
+  "title": "Call To Actions",
+  "category": "gutentools",
+  "description": "Engage your audience with a dynamic Call-to-Actions block. Encourage clicks with customizable buttons, compelling headlines, and eye-catching layouts. Perfect for driving traffic, generating leads, or boosting conversions.",
+  "keywords": [
+    "CTA, Call to Action"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "headingTag": {
+      "type": "number",
+      "default": "2"
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "layoutStyle": {
+      "type": "string",
+      "default": "default"
+    },
+    "bgType": {
+      "type": "string",
+      "default": "color"
+    },
+    "bgImage": {
+      "type": "object"
+    },
+    "bgPosition": {
+      "type": "string",
+      "default": "left top"
+    },
+    "bgRepeat": {
+      "type": "string",
+      "default": "no-repeat"
+    },
+    "bgSize": {
+      "type": "string",
+      "default": "cover"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#efefef"
+    },
+    "bgAttachment": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgOverlay": {
+      "type": "string"
+    },
+    "bgGradient": {
+      "type": "string"
+    },
+    "ctaPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            35,
+            35,
+            35,
+            35
+          ],
+          "tablet": [
+            35,
+            35,
+            35,
+            35
+          ],
+          "mobile": [
+            35,
+            35,
+            35,
+            35
+          ]
+        }
+      }
+    },
+    "ctaMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "showHeadingText": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "headingText": {
+      "type": "string",
+      "default": "This is call to actions heading text"
+    },
+    "headingTextTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 32,
+            "tablet": 32,
+            "mobile": 32
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.2,
+            "tablet": 1.2,
+            "mobile": 1.2
+          }
+        }
+      }
+    },
+    "headingTextPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "headingTextMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "showSubHeadingText": {
+      "type": "boolean",
+      "default": true
+    },
+    "subHeadingText": {
+      "type": "string",
+      "default": "Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Cras non dolor. Praesent adipiscing. Nunc sed turpis. Phasellus a est."
+    },
+    "subHeadingTextTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 18,
+            "tablet": 18,
+            "mobile": 18
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "subHeadingTextColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "subHeadingTextPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "subHeadingTextMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            30,
+            0,
+            30,
+            0
+          ],
+          "tablet": [
+            30,
+            0,
+            30,
+            0
+          ],
+          "mobile": [
+            30,
+            0,
+            30,
+            0
+          ]
+        }
+      }
+    },
+    "showButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "borders": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

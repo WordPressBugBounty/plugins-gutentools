@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/faq-item",
+  "version": "1.0.0",
+  "title": "FAQ Item",
+  "category": "gutentools",
+  "description": "Easily add interactive FAQs to your pages. Help users find quick answers with an organized, collapsible layout.",
+  "keywords": [
+    "faq"
+  ],
+  "parent": [
+    "gutentools/faq"
+  ],
+  "example": {},
+  "supports": {
+    "reusable": false,
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "initialOpen": {
+      "type": "boolean",
+      "default": false
+    },
+    "parent": {
+      "type": "object"
+    }
+  },
+  "usesContext": [
+    "gutentools/openIcon",
+    "gutentools/closeIcon",
+    "gutentools/iconColor",
+    "gutentools/iconBgColor",
+    "gutentools/iconPosition",
+    "gutentools/titleTypo",
+    "gutentools/titleColor",
+    "gutentools/faqItemMargin",
+    "gutentools/iconRadius",
+    "gutentools/faqItemPadding",
+    "gutentools/itemBgColor",
+    "gutentools/itemRadius",
+    "gutentools/iconSize"
+  ],
+  "textdomain": "gutentools",
+  "viewScript": "file:./frontend.js",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

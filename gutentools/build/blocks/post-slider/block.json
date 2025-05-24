@@ -1,0 +1,766 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/post-slider",
+  "version": "1.0.0",
+  "title": "Post Slider",
+  "category": "gutentools",
+  "description": "Showcase your content with the Post Slider Block, offering flexible options to display posts dynamically. Choose specific posts or filter by categories, tags, or authors to create tailored sliders.",
+  "keywords": [
+    "slider",
+    "post"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "categories": {
+      "type": "number"
+    },
+    "postsToShow": {
+      "type": "number",
+      "default": 5
+    },
+    "slideToShow": {
+      "type": "object",
+      "default": {
+        "activeUnit": "",
+        "units": [
+          ""
+        ],
+        "range": {
+          "min": 1,
+          "max": 10
+        },
+        "values": {
+          "desktop": 4,
+          "tablet": 2,
+          "mobile": 1
+        }
+      }
+    },
+    "order": {
+      "type": "string",
+      "default": "desc"
+    },
+    "orderBy": {
+      "type": "string",
+      "default": "date"
+    },
+    "enableExcerpt": {
+      "type": "boolean",
+      "default": false
+    },
+    "enableArrow": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableImage": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableAuthor": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableCategory": {
+      "type": "boolean",
+      "default": true
+    },
+    "excerptLength": {
+      "type": "number",
+      "default": 20
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "readMoreText": {
+      "type": "string",
+      "default": "Read More"
+    },
+    "customLinkText": {
+      "type": "string",
+      "default": "Custom Text"
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#eee"
+    },
+    "dotsOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "buttonColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonBGColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "buttonHoverColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "buttonBGHoverColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "dotsColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "excerptColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "arrowBGColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowBGHoverColor": {
+      "type": "string",
+      "default": "#0012ff"
+    },
+    "arrowColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "metaColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "arrowHoverColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "titleTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 21,
+            "tablet": 21,
+            "mobile": 18
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1,
+            "tablet": 1,
+            "mobile": 1
+          }
+        }
+      }
+    },
+    "excerptTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.5,
+            "tablet": 1.5,
+            "mobile": 1.5
+          }
+        }
+      }
+    },
+    "metaTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 12,
+            "tablet": 12,
+            "mobile": 12
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.5,
+            "tablet": 1.5,
+            "mobile": 1.5
+          }
+        }
+      }
+    },
+    "buttonTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1,
+            "tablet": 1,
+            "mobile": 1
+          }
+        }
+      }
+    },
+    "titlePadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "excerptPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "buttonPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "tablet": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "mobile": [
+            10,
+            10,
+            10,
+            10
+          ]
+        }
+      }
+    },
+    "buttonMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            10,
+            10,
+            0
+          ],
+          "tablet": [
+            15,
+            10,
+            10,
+            0
+          ],
+          "mobile": [
+            15,
+            10,
+            10,
+            0
+          ]
+        }
+      }
+    },
+    "arrowSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            40,
+            40
+          ],
+          "tablet": [
+            30,
+            30
+          ],
+          "mobile": [
+            30,
+            30
+          ]
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "tablet": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "mobile": [
+            15,
+            15,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    "dotsSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            20,
+            20
+          ],
+          "tablet": [
+            16,
+            16
+          ],
+          "mobile": [
+            16,
+            16
+          ]
+        }
+      }
+    },
+    "arrowIconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "arrowRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 50,
+          "tablet": 50,
+          "mobile": 50
+        }
+      }
+    },
+    "dotsRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "buttonRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 0,
+          "tablet": 0,
+          "mobile": 0
+        }
+      }
+    },
+    "imgRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 0,
+          "tablet": 0,
+          "mobile": 0
+        }
+      }
+    },
+    "arrowPositionRight": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": -2000,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 24,
+          "tablet": 24,
+          "mobile": 24
+        }
+      }
+    },
+    "arrowPositionLeft": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": -2000,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 24,
+          "tablet": 24,
+          "mobile": 24
+        }
+      }
+    },
+    "imgHeight": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em",
+          "%"
+        ],
+        "range": {
+          "min": 0,
+          "max": 1000
+        },
+        "values": {
+          "desktop": 250,
+          "tablet": 250,
+          "mobile": 250
+        }
+      }
+    },
+    "speed": {
+      "type": "number",
+      "default": 500
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

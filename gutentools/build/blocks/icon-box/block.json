@@ -1,0 +1,524 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/icon-box",
+  "version": "1.0.0",
+  "title": "Icon Box",
+  "category": "gutentools",
+  "description": "This block offers a powerful and versatile way to create dynamic, customizable icon boxes with minimal effort. ",
+  "keywords": [
+    "icon",
+    "group",
+    "box"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "titleTag": {
+      "type": "number",
+      "default": "2"
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "iconBoxBgColor": {
+      "type": "string",
+      "default": "#efefef"
+    },
+    "iconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            40,
+            40
+          ],
+          "tablet": [
+            30,
+            30
+          ],
+          "mobile": [
+            30,
+            30
+          ]
+        }
+      }
+    },
+    "iconFontSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 21,
+          "tablet": 21,
+          "mobile": 21
+        }
+      }
+    },
+    "iconRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "iconBoxPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "tablet": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "mobile": [
+            15,
+            15,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    "iconBoxMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "iconBorder": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "iconBoxBorder": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "iconBoxRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 5,
+          "tablet": 5,
+          "mobile": 5
+        }
+      }
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "iconBgColor": {
+      "type": "string",
+      "default": "#fcfcfc"
+    },
+    "titleText": {
+      "type": "string",
+      "default": "Icon box title"
+    },
+    "titleTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 24,
+            "tablet": 24,
+            "mobile": 24
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1,
+            "tablet": 1,
+            "mobile": 1
+          }
+        }
+      }
+    },
+    "titlePadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "titleMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "isImgIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDescription": {
+      "type": "boolean",
+      "default": true
+    },
+    "descriptionText": {
+      "type": "string",
+      "default": "Nam commodo suscipit quam. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi."
+    },
+    "descriptionColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "descriptionTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 400,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1.6,
+            "tablet": 1.6,
+            "mobile": 1.6
+          }
+        }
+      }
+    },
+    "descriptionPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "descriptionMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "icon": "fa-cog"
+      }
+    },
+    "iconImg": {
+      "type": "object"
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

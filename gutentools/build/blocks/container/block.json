@@ -1,0 +1,191 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/container",
+  "version": "1.0.0",
+  "title": "Container",
+  "category": "gutentools",
+  "description": "The Container Block is a versatile element designed to manage and enhance layout design with responsive control.",
+  "example": {},
+  "keywords": [
+    "section",
+    "group",
+    "container"
+  ],
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "block_id": {
+      "type": "string"
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "units": [
+          "px",
+          "em"
+        ],
+        "isLinkActive": true,
+        "range": {
+          "min": 10,
+          "max": 300
+        },
+        "values": {
+          "desktop": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "tablet": [
+            15,
+            15,
+            15,
+            15
+          ],
+          "mobile": [
+            15,
+            15,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "units": [
+          "px",
+          "em"
+        ],
+        "isLinkActive": true,
+        "range": {
+          "min": 10,
+          "max": 300
+        },
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "containerType": {
+      "type": "string",
+      "default": "boxed"
+    },
+    "containerWidth": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "units": [
+          "px",
+          "%"
+        ],
+        "range": {
+          "min": 1,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 1140,
+          "tablet": 720,
+          "mobile": 540
+        }
+      }
+    },
+    "containerHeight": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "units": [
+          "px",
+          "vh"
+        ],
+        "range": {
+          "min": 1,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 300,
+          "tablet": 300,
+          "mobile": 300
+        }
+      }
+    },
+    "bgType": {
+      "type": "string",
+      "default": "image"
+    },
+    "bgImage": {
+      "type": "object"
+    },
+    "bgPosition": {
+      "type": "string",
+      "default": "left top"
+    },
+    "bgRepeat": {
+      "type": "string",
+      "default": "no-repeat"
+    },
+    "bgSize": {
+      "type": "string",
+      "default": "cover"
+    },
+    "bgColor": {
+      "type": "string"
+    },
+    "bgAttachment": {
+      "type": "boolean",
+      "default": false
+    },
+    "bgOverlay": {
+      "type": "string"
+    },
+    "bgGradient": {
+      "type": "string"
+    },
+    "contentPosition": {
+      "type": "string",
+      "default": "center"
+    },
+    "valign": {
+      "type": "string",
+      "default": "center"
+    },
+    "borders": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "borderRadius": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

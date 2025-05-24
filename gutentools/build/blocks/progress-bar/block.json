@@ -1,0 +1,190 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/progress-bar",
+  "version": "1.0.0",
+  "title": "Progress Bar",
+  "category": "gutentools",
+  "description": "Add customizable progress bars to your site with the Progress Bar Block. Easily adjust colors, labels, and progress values to match your design. ",
+  "keywords": [
+    "pogress",
+    "slide",
+    "bar"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "block_id": {
+      "type": "string"
+    },
+    "labelAlignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "labelTypo": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 16,
+            "tablet": 16,
+            "mobile": 16
+          }
+        },
+        "fontWeight": 600,
+        "lineHeight": {
+          "activeUnit": "",
+          "units": [
+            ""
+          ],
+          "values": {
+            "desktop": 1,
+            "tablet": 1,
+            "mobile": 1
+          }
+        }
+      }
+    },
+    "progressBarPadding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "progressBarMargin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            15,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            15,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "progressBarBgColor": {
+      "type": "string",
+      "default": "#efefef"
+    },
+    "progressBarActiveBgColor": {
+      "type": "string",
+      "default": "green"
+    },
+    "progressBarRadius": {
+      "type": "number",
+      "default": 10
+    },
+    "progressBarHeight": {
+      "type": "number",
+      "default": 30
+    },
+    "showLabel": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLabelInsideBar": {
+      "type": "boolean",
+      "default": true
+    },
+    "labelColor": {
+      "type": "string",
+      "default": "#000"
+    },
+    "labelText": {
+      "type": "string",
+      "default": "Javascript"
+    },
+    "completedPercentage": {
+      "type": "number",
+      "default": 60
+    },
+    "completedPercentageColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "showCompletedPercentage": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
