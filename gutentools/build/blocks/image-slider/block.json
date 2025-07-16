@@ -1,0 +1,454 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/image-slider",
+  "version": "1.0.0",
+  "title": "Image Slider",
+  "category": "gutentools",
+  "description": "Enhance your website with our versatile Image Slider Block. Easily select and showcase multiple image in a sleek, responsive slider format.",
+  "keywords": [
+    "image",
+    "slider"
+  ],
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "enableArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "block_id": {
+      "type": "string"
+    },
+    "dotsOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "dotsColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "arrowBGColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowBGHoverColor": {
+      "type": "string",
+      "default": "#0012ff"
+    },
+    "arrowColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "arrowHoverColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "arrowSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            40,
+            40
+          ],
+          "tablet": [
+            30,
+            30
+          ],
+          "mobile": [
+            30,
+            30
+          ]
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "dotsSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "height",
+          "width"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            20,
+            20
+          ],
+          "tablet": [
+            16,
+            16
+          ],
+          "mobile": [
+            16,
+            16
+          ]
+        }
+      }
+    },
+    "arrowIconSize": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "arrowRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "dotsRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 18,
+          "tablet": 18,
+          "mobile": 18
+        }
+      }
+    },
+    "arrowPositionRight": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": -2000,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 24,
+          "tablet": 24,
+          "mobile": 24
+        }
+      }
+    },
+    "arrowPositionLeft": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": -2000,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 24,
+          "tablet": 24,
+          "mobile": 24
+        }
+      }
+    },
+    "speed": {
+      "type": "number",
+      "default": 500
+    },
+    "fade": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "images": {
+      "type": "array",
+      "default": []
+    },
+    "slideToShow": {
+      "type": "object",
+      "default": {
+        "activeUnit": "",
+        "units": [
+          ""
+        ],
+        "range": {
+          "min": 1,
+          "max": 6
+        },
+        "values": {
+          "desktop": 3,
+          "tablet": 2,
+          "mobile": 1
+        }
+      }
+    },
+    "imgHeight": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em",
+          "%"
+        ],
+        "range": {
+          "min": 0,
+          "max": 1000
+        },
+        "values": {
+          "desktop": 250,
+          "tablet": 250,
+          "mobile": 250
+        }
+      }
+    },
+    "imgWidth": {
+      "type": "object",
+      "default": {
+        "activeUnit": "%",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em",
+          "%"
+        ],
+        "range": {
+          "min": 0,
+          "max": 2000
+        },
+        "values": {
+          "desktop": 100,
+          "tablet": 100,
+          "mobile": 100
+        }
+      }
+    },
+    "imgRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 0,
+          "tablet": 0,
+          "mobile": 0
+        }
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "isLinkActive": true,
+        "properties": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "rem"
+        ],
+        "values": {
+          "desktop": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tablet": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "mobile": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "gap": {
+      "type": "number",
+      "default": 10
+    },
+    "borders": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
+    },
+    "objectFit": {
+      "type": "string",
+      "default": "cover"
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

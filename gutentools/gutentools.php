@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Gutentools
  * Description: Gutentools is a powerful block editor plugin designed for seamless full-site editing. It offers a range of customizable blocks, including page and post sliders, containers, and more, all with flexible responsive controls. With an intuitive drag-and-drop visual editor, you can easily create engaging layouts and dynamic content for any device. Unlock the full potential of WordPress with blocks that are tailored for a smooth design experience.
- * Version: 1.0.9
+ * Version: 1.1.0
  * Author: Gutentools
  * Author URI: https://gutentools.com/
  * License: GPLv3 or later

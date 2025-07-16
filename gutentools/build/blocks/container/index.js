@@ -668,11 +668,10 @@ class ResponsiveRangeControl extends wp.element.Component {
       activeUnit,
       units = _constants__WEBPACK_IMPORTED_MODULE_3__.sizeUnit,
       values,
-      range: {
-        min,
-        max
-      }
+      range
     } = oldData;
+    const min = range.min;
+    const max = activeUnit === "%" ? 100 : range.max;
     const activeView = (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getPreviewDevice)();
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: `${_constants__WEBPACK_IMPORTED_MODULE_3__.prefix}-responsive-range-control`
@@ -2558,6 +2557,30 @@ const svg = {
     d: "M523 862 c-15 -10 -123 -288 -123 -318 0 -45 51 -40 70 7 12 28 15\r 29 74 29 61 0 63 -1 77 -32 15 -36 45 -44 62 -17 8 13 -3 52 -43 160 -64 172\r -79 195 -117 171z m45 -179 c11 -33 11 -33 -24 -33 -18 0 -34 2 -34 4 0 2 7\r 20 16 41 17 41 25 38 42 -12z"
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
     d: "M853 859 c-44 -13 -101 -74 -114 -122 -37 -137 96 -260 231 -213 40\r 14 46 14 61 0 14 -12 22 -13 38 -4 24 12 26 29 8 54 -12 16 -11 25 0 60 47\r 136 -85 268 -224 225z m102 -75 c40 -19 70 -74 60 -111 -5 -20 -9 -23 -18 -14\r -16 16 -57 13 -64 -5 -3 -9 -1 -26 6 -37 10 -16 10 -21 -1 -28 -46 -29 -138\r 38 -138 101 0 29 34 79 63 94 40 20 51 20 92 0z"
+  }))),
+  imageSlider: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    version: "1.0",
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "128.000000pt",
+    height: "128.000000pt",
+    viewBox: "0 0 128.000000 128.000000",
+    preserveAspectRatio: "xMidYMid meet"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("g", {
+    transform: "translate(0.000000,128.000000) scale(0.100000,-0.100000)",
+    fill: "#2b44ff",
+    stroke: "none"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M104 1269 c-46 -13 -91 -69 -99 -121 -3 -24 -5 -269 -3 -545 3 -489\r 4 -502 24 -529 11 -15 33 -37 48 -48 27 -21 38 -21 566 -21 528 0 539 0 566\r 21 15 11 37 33 48 48 21 27 21 38 21 566 0 528 0 539 -21 566 -11 15 -33 37\r -48 48 -27 21 -39 21 -549 23 -298 1 -536 -2 -553 -8z m1078 -86 c17 -15 18\r -45 18 -541 0 -475 -2 -527 -17 -544 -15 -17 -45 -18 -541 -18 -475 0 -527 2\r -544 17 -17 15 -18 45 -18 541 0 475 2 527 17 544 15 17 45 18 541 18 475 0\r 527 -2 544 -17z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M266 833 c-25 -37 -46 -76 -46 -85 0 -26 81 -147 103 -154 19 -6 47\r 11 47 30 0 6 -16 36 -35 68 l-36 57 37 55 c41 62 42 90 2 94 -23 3 -33 -6 -72\r -65z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M915 879 c-5 -14 4 -37 29 -75 l37 -55 -36 -57 c-19 -32 -35 -62 -35\r -68 0 -19 28 -36 47 -30 22 7 103 128 103 154 0 9 -20 48 -45 85 -35 52 -51\r 67 -70 67 -15 0 -26 -7 -30 -21z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M330 310 c-28 -28 -23 -67 12 -93 23 -17 31 -19 53 -9 14 6 31 23 37\r 37 10 22 8 30 -9 53 -26 35 -65 40 -93 12z m58 -42 c-6 -18 -28 -21 -28 -4 0\r 9 7 16 16 16 9 0 14 -5 12 -12z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M602 314 c-46 -32 -20 -107 38 -107 38 0 60 23 60 64 0 29 -31 59\r -60 59 -9 0 -26 -7 -38 -16z m53 -43 c7 -12 -12 -24 -25 -16 -11 7 -4 25 10\r 25 5 0 11 -4 15 -9z"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    d: "M861 304 c-27 -34 -26 -50 4 -79 29 -30 45 -31 79 -4 31 25 34 61 6\r 89 -28 28 -64 25 -89 -6z m59 -40 c0 -9 -5 -14 -12 -12 -18 6 -21 28 -4 28 9\r 0 16 -7 16 -16z"
   })))
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (svg);
