@@ -16,14 +16,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
+/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles/editor.scss */ "./src/blocks/faq-item/styles/editor.scss");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
+
 
 
 
@@ -69,12 +71,12 @@ function Edit(props) {
     itemRadius,
     iconSize
   };
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useEffect)(() => {
     setAttributes({
       parent: parentAttrs
     });
   }, [openIcon, closeIcon, iconColor, iconBgColor, iconPosition, titleTypo, titleColor, faqItemPadding, faqItemMargin, iconRadius, itemBgColor, itemRadius, iconSize]);
-  const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(initialOpen);
+  const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useState)(initialOpen);
   const toggle = () => {
     const newState = !isOpen;
     setIsOpen(newState);
@@ -84,24 +86,24 @@ function Edit(props) {
   };
   const iconStyle = {
     backgroundColor: iconBgColor,
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getTypoStyle)(titleTypo),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getTypoStyle)(titleTypo),
     color: iconColor,
-    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getResponsiveRangeVal)(iconRadius),
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getDimensionStyle)("size", iconSize)
+    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getResponsiveRangeVal)(iconRadius),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getDimensionStyle)("size", iconSize)
   };
   const titleStyle = {
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getTypoStyle)(titleTypo),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getTypoStyle)(titleTypo),
     color: titleColor
   };
   const itemStyles = {
     backgroundColor: itemBgColor,
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getDimensionStyle)("padding", faqItemPadding),
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getDimensionStyle)("margin", faqItemMargin),
-    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getResponsiveRangeVal)(itemRadius)
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getDimensionStyle)("padding", faqItemPadding),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getDimensionStyle)("margin", faqItemMargin),
+    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_7__.getResponsiveRangeVal)(itemRadius)
   };
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("FAQ Item Settings", "gutentools")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Initially Open", "gutentools"),
     checked: initialOpen,
     onChange: newOpen => setAttributes({
@@ -109,13 +111,13 @@ function Edit(props) {
     }),
     __nextHasNoMarginBottom: true
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)(),
     style: itemStyles
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-faq-title-wrapper faq-${iconPosition}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: `${_constants__WEBPACK_IMPORTED_MODULE_5__.prefix}-faq-title-wrapper faq-${iconPosition}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, {
     tagName: "div",
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-faq-title`,
+    className: `${_constants__WEBPACK_IMPORTED_MODULE_5__.prefix}-faq-title`,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title", "gutentools"),
     value: title,
     style: titleStyle,
@@ -127,16 +129,16 @@ function Edit(props) {
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Title Here...", "gutentools"),
     allowedFormats: ["core/bold", "core/italic"],
     onClick: toggle
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-faq-toggle`,
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.Button, {
+    className: `${_constants__WEBPACK_IMPORTED_MODULE_5__.prefix}-faq-toggle`,
     style: iconStyle,
     onClick: toggle,
     "aria-expanded": isOpen
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
     className: `fa-solid ${isOpen ? closeIcon?.icon || "fa-chevron-down" : openIcon?.icon || "fa-chevron-up"}`
   }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-faq-content ${isOpen ? "is-open" : ""}`
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InnerBlocks, null))));
+    className: `${_constants__WEBPACK_IMPORTED_MODULE_5__.prefix}-faq-content ${isOpen ? "is-open" : ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InnerBlocks, null))));
 }
 
 /***/ }),
@@ -7754,6 +7756,19 @@ var union = baseRest(function(arrays) {
 });
 
 module.exports = union;
+
+
+/***/ }),
+
+/***/ "./src/blocks/faq-item/styles/editor.scss":
+/*!************************************************!*\
+  !*** ./src/blocks/faq-item/styles/editor.scss ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
 
 
 /***/ }),

@@ -49,9 +49,6 @@
   overflow: hidden;
   transition: max-height 0.4s ease, opacity 0.4s ease;
 }
-.gutentools-faq-content:not(.is-open) {
-  display: none;
-}
 
 .gutentools-faq-toggle i {
   transition: transform 0.9s ease;
