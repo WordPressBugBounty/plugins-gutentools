@@ -86,6 +86,11 @@ if( !class_exists( 'Gutentools_Script_Loader' ) ){
                 "1.8.0"
             );
 
+			wp_enqueue_style(
+                'jquery-ticker-css', 
+                Gutentools_Url . '/assets/vendors/news-ticker-controls-acme/css/style.min.css', 
+            );
+
             wp_enqueue_script(
 		        'slick-slider',
 		        Gutentools_Url . '/assets/vendors/slick/slick.min.js', 
@@ -107,6 +112,14 @@ if( !class_exists( 'Gutentools_Script_Loader' ) ){
 		        Gutentools_Url . '/assets/vendors/count-up/jquery.countup.min.js', 
 		        array('jquery'),
 		        '1.0.5',
+		        true
+		    );
+
+		    wp_enqueue_script(
+		        'jquery-ticker',
+		        Gutentools_Url . '/assets/vendors/news-ticker-controls-acme/js/acmeticker.min.js', 
+		        array('jquery'),
+		        'null',
 		        true
 		    );
 

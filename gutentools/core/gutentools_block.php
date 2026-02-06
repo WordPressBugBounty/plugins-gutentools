@@ -405,6 +405,10 @@ class Gutentools_Block extends Gutentools_Helper{
 	                    $props[ $device ][ 'font-family' ] = empty( $typo[ 'fontFamily' ] ) ? 'inherit' : $typo[ 'fontFamily' ] ;
 	                }
 
+	                if( isset( $typo[ 'fontStyle' ] ) ){
+	                    $props[ $device ][ 'font-style' ] = empty( $typo[ 'fontStyle' ] ) ? '' : $typo[ 'fontStyle' ] ;
+	                }
+
 	                if( isset( $typo[ 'textTransform' ] ) ){
 	                    $props[ $device ][ 'text-transform' ] = $typo[ 'textTransform' ];
 	                }
@@ -415,6 +419,10 @@ class Gutentools_Block extends Gutentools_Helper{
 	                $title_lh = $typo[ 'lineHeight' ];
 
 	                $props[ $device ][ 'line-height' ] = $title_lh[ 'values' ][ $device ];
+	            }
+	            if( isset( $typo[ 'letterSpacing' ] ) ){
+	                $title_size = $typo[ 'letterSpacing' ];
+	                $props[ $device ][ 'letter-spacing' ] = $title_size[ 'values' ][ $device ] . $title_size[ 'activeUnit' ];
 	            }
 	        }
 	    }

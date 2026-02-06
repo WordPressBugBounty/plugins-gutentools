@@ -1,0 +1,146 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/post-ticker/styles/style.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+.gutentools-post-ticker {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  height: auto !important;
+}
+.gutentools-post-ticker .gutentools-ticker-label {
+  background: #c62828;
+  color: #fff;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.gutentools-post-ticker .gutentools-ticker-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  color: #222;
+}
+.gutentools-post-ticker .ticker-item {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.gutentools-post-ticker .gutentools-ticker-controls {
+  display: flex;
+  gap: 5px;
+}
+.gutentools-post-ticker .gutentools-ticker-controls .ticker-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 4px 6px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.gutentools-post-ticker .gutentools-ticker-controls .ticker-arrow:hover {
+  color: #c62828;
+  transform: 0;
+}
+.gutentools-post-ticker .gutentools-ticker-controls .ticker-arrow i {
+  pointer-events: none;
+}
+
+.gutentools-post-ticker {
+  position: relative;
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 6px;
+  overflow: hidden;
+  border-color: transparent !important;
+}
+.gutentools-post-ticker .gutentools-ticker-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.gutentools-post-ticker .gutentools-ticker-wrap {
+  min-height: 30px;
+}
+.gutentools-post-ticker .gutentools-ticker-content {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.gutentools-post-ticker .ticker-item {
+  white-space: nowrap;
+}
+.gutentools-post-ticker {
+  /* Continuous scroll */
+}
+.gutentools-post-ticker .continuous-scroll {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.gutentools-post-ticker .continuous-scroll .ticker-item.continuous {
+  display: inline-block;
+  padding-right: 2rem;
+}
+.gutentools-post-ticker {
+  /* Controls */
+}
+.gutentools-post-ticker .gutentools-post-ticker-controls {
+  position: relative;
+  display: flex;
+  gap: 5px;
+}
+.gutentools-post-ticker .gutentools-post-ticker-controls .ticker-arrow {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+button.gutentools-post-ticker-play:before {
+  content: "\f04b";
+  font-family: fontawesome;
+  color: #bbbbbb;
+}
+
+.gutentools-post-ticker .gutentools-post-ticker-box {
+  flex: auto;
+  padding-top: 0;
+}
+
+button.gutentools-post-ticker-arrow:after, button.gutentools-post-ticker-arrow:before,
+.gutentools-post-ticker-pause:after,
+.gutentools-post-ticker-pause:before {
+  border-color: currentColor !important;
+}
+
+.gutentools-post-ticker .gutentools-ticker-wrap.continuous-scroll .ticker-item {
+  width: auto;
+  text-overflow: initial;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.gutentools-post-ticker .gutentools-ticker-wrap.continuous-scroll .ticker-item a {
+  position: relative;
+  padding-right: 30px !important;
+}
+.gutentools-post-ticker .gutentools-ticker-wrap.continuous-scroll .ticker-item a:after {
+  content: "✦";
+  position: absolute;
+  right: 3px;
+}
+
+.gutentools-post-ticker-label {
+  border-radius: 3px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

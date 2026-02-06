@@ -249,7 +249,21 @@
             "tablet": 1.6,
             "mobile": 1.6
           }
-        }
+        },
+        "letterSpacing": {
+          "units": [
+            "px",
+            "em",
+            "rem"
+          ],
+          "activeUnit": "px",
+          "values": {
+            "desktop": 0,
+            "tablet": 0,
+            "mobile": 0
+          }
+        },
+        "fontStyle": ""
       }
     },
     "iconRadius": {

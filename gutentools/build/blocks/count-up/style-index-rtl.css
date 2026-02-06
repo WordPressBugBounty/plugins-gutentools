@@ -23,11 +23,11 @@
 }
 
 .gutentools-align-right .count-up-number {
-  justify-content: right;
+  justify-content: left;
 }
 
 .gutentools-align-left .count-up-number {
-  justify-content: left;
+  justify-content: right;
 }
 
 .count-up-title-description > span {

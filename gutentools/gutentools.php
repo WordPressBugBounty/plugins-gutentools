@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Gutentools
  * Description: Gutentools is a powerful block editor plugin designed for seamless full-site editing. It offers a range of customizable blocks, including page and post sliders, containers, and more, all with flexible responsive controls. With an intuitive drag-and-drop visual editor, you can easily create engaging layouts and dynamic content for any device. Unlock the full potential of WordPress with blocks that are tailored for a smooth design experience.
- * Version: 1.1.1
+ * Version: 1.1.3
  * Author: Gutentools
  * Author URI: https://gutentools.com/
  * License: GPLv3 or later
@@ -12,34 +12,34 @@
 
 //  Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 if ( ! function_exists( 'gutentools_get_version' ) ) {
-    /**
-     * Get Plugin Version
-     *
-     * @return string
-     */
-    function gutentools_get_version() {
-        $data = get_file_data( __FILE__, array( 'version' => 'Version' ) );
-        return $data['version'];
-    }
+	/**
+	 * Get Plugin Version
+	 *
+	 * @return string
+	 */
+	function gutentools_get_version() {
+		$data = get_file_data( __FILE__, array( 'version' => 'Version' ) );
+		return $data['version'];
+	}
 }
 
 add_action( 'plugins_loaded', 'gutentools_load' ) ;
 
 function gutentools_load(){
-    define( 'Gutentools_File', __FILE__ );
-    define( 'Gutentools_Url', plugin_dir_url( Gutentools_File ) );
-    define( 'Gutentools_Path', plugin_dir_path( Gutentools_File ) );
-    define( 'Gutentools_Version', gutentools_get_version() );
+	define( 'Gutentools_File', __FILE__ );
+	define( 'Gutentools_Url', plugin_dir_url( Gutentools_File ) );
+	define( 'Gutentools_Path', plugin_dir_path( Gutentools_File ) );
+	define( 'Gutentools_Version', gutentools_get_version() );
 
-    require_once Gutentools_Path . "core/class_block_helper.php";
-    require_once Gutentools_Path . "core/block_configuration.php";
-    require_once Gutentools_Path . "inc/svg.php";
-    require_once Gutentools_Path . "inc/plugin-page.php";
-    require_once Gutentools_Path . "inc/script_loader.php";
+	require_once Gutentools_Path . "core/class_block_helper.php";
+	require_once Gutentools_Path . "core/block_configuration.php";
+	require_once Gutentools_Path . "inc/svg.php";
+	require_once Gutentools_Path . "inc/plugin-page.php";
+	require_once Gutentools_Path . "inc/script_loader.php";
     if ( ! function_exists( 'gutentools_pro_get_version' ) ) 
         require_once Gutentools_Path . "inc/admin-notice.php";
 

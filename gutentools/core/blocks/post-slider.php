@@ -13,7 +13,9 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 		* @var string
 		*/
 		public $title = '';
-		public $count = 0 ;
+		// public $count = 0 ;
+		public $counts = [];
+
 
 		/**
 		* Description of this block.
@@ -49,6 +51,12 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 	        foreach ( $this->blocks as $block ) {
 	        	
 		    	$attrs = $this->get_attrs_with_default( $block[ 'attrs' ] );
+		    	$block_id = $attrs['block_id'] ?? null;
+
+				$count = $block_id && isset( $this->counts[ $block_id ] )
+				    ? (int) $this->counts[ $block_id ]
+				    : 0;
+
 
 		    	if ( ! empty( $attrs ) ) {
 
@@ -89,7 +97,7 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 							'.gutentools-post-slider-wrapper' => array_merge(
 								$padding[ $device ]
 							),
-							'.gutentools-post-title' => array_merge(
+							'.gutentools-post-title a' => array_merge(
 								$titlePadding[ $device ],
 								$titleTypo[ $device ],
 							),
@@ -186,10 +194,13 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 						$slideToShow = $attrs[ 'slideToShow' ];	
 					}
 
-					$slide = $this->count > esc_attr( $slideToShow[ 'values' ][ 'desktop' ] ) ? esc_attr( $slideToShow[ 'values' ][ 'desktop' ] ) : $this->count;
+					$slide = $count > $slideToShow['values']['desktop']
+						    ? $slideToShow['values']['desktop']
+						    : $count;
+					$dots = ( $attrs['enableDots'] && $count > $slide ) ? 'true' : 'false';
 
 					ob_start();
-					$dots = ( $attrs[ 'enableDots' ]  && $this->count > $slide )? 'true' : 'false';	
+					// $dots = ( $attrs[ 'enableDots' ]  && $this->count > $slide )? 'true' : 'false';	
 
 					?>
 
@@ -270,7 +281,13 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 			
 			$query 	= $this->get_query( );
 			
-			$this->count = $query->post_count;
+			// $this->count = $query->post_count;
+			$block_id = $attrs['block_id'] ?? null;
+
+			if ( $block_id ) {
+			    $this->counts[ $block_id ] = $query->post_count;
+			}
+
 			
 			ob_start();
 		    

@@ -2,10 +2,10 @@
 Contributors: gutentools
 Tags: Gutenberg, Block Editor, Gutenberg Templates
 Requires at least: 6.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.1
-Version: 1.1.1
+Stable tag: 1.1.3
+Version: 1.1.3
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -65,6 +65,11 @@ License: [MIT](https://opensource.org/licenses/MIT)
 Jquery Countup:
 Author: AGMStudio,
 Source: https://github.com/AGMStudio/jquery.countup.js,
+License: [MIT](https://opensource.org/licenses/MIT)
+
+AcmeTicker - News Ticker:
+Author: codersantosh,
+Source: https://github.com/codersantosh/acmeticker,
 License: [MIT](https://opensource.org/licenses/MIT)
 
 == External Services ==
@@ -156,6 +161,13 @@ This plugin Supports all the Themes but the following themes are highly recommen
 = 1.1.1 =
 - Fixing Issue on FAQ block
 
+= 1.1.2 =
+- Adding support for letter spacing and font style
+- Added new News Ticker Block
+
+= 1.1.3 =
+- Fixing Minor Issues
+
 == Upgrade Notice ==
 
 = 1.0.0 =
@@ -196,3 +208,10 @@ This plugin Supports all the Themes but the following themes are highly recommen
 
 = 1.1.1 =
 - Fixing Issue on FAQ block
+
+= 1.1.2 =
+- Adding support for letter spacing and font style
+- Added new News Ticker Block
+
+= 1.1.3 =
+- Fixing Minor Issues
