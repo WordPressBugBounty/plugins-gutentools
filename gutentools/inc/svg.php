@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if( !class_exists( 'Gutentools_Icons' ) ){
 	class Gutentools_Icons{
 

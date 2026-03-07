@@ -331,6 +331,9 @@ button.components-button.components-circular-option-picker__clear {
   height: auto !important;
 }
 
+.gutentools-importer-popup-contents * {
+  box-sizing: border-box;
+}
 .gutentools-importer-popup-contents {
   position: fixed;
   width: 100%;
@@ -344,9 +347,6 @@ button.components-button.components-circular-option-picker__clear {
   z-index: -1;
   visibility: hidden;
   transition: all 0.3s;
-}
-.gutentools-importer-popup-contents * {
-  box-sizing: border-box;
 }
 .gutentools-importer-popup-contents .gutentools-importer-popup-wrapper {
   background: #fff;

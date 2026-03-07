@@ -12116,7 +12116,7 @@ const Importer = () => {
     }
   };
   const insertButton = node => {
-    if (node.is_pro == "" || node.is_pro == "1" && (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.isPro)()) {
+    if (node.is_pro == "1" && (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.isPro)()) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
           className: "insert",
@@ -13545,6 +13545,7 @@ const BorderControl = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.__experimentalBorderBoxControl, {
     colors: colors,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Borders"),
+    __next40pxDefaultSize: true,
     ...rest
   });
 };

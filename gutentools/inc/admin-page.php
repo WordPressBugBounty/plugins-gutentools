@@ -8,7 +8,11 @@
 			<p><?php echo esc_html__( 'Gutentools: Empowering you to create beautiful, responsive websites with ease using flexible Gutenberg blocks.', 'gutentools' ); ?></p>
 		</div>
 		<div class="gutentools-admin-page-header-right">
-			<p><?php echo esc_html__( 'Version: ', 'gutentools' ). gutentools_get_version(); ?></p>
+			<p>
+				<?php 
+				/* translators: %s: Plugin version number. */
+				printf( esc_html__( 'Version: %s', 'gutentools' ), esc_html( gutentools_get_version() ) ); ?>
+			</p>
 		</div>
 	</div>
 	<div class="gutentools-admin-page-content">

@@ -174,6 +174,8 @@ if( !class_exists( 'Gutentools_Page_Slider' ) ){
 						'css' => $desktop_css,
 					));
 					$dots = ( $attrs[ 'enableDots' ]  && $this->count > 1 )? 'true' : 'false';
+					$block_id = sanitize_html_class( $this->block_id );
+					$selector = '#' . $block_id . ' .gutentools-page-slider-init';
 					ob_start();
 					?>
 
@@ -181,15 +183,15 @@ if( !class_exists( 'Gutentools_Page_Slider' ) ){
 						slidesToShow: 1,
 						slidesToScroll: 1,
 						infinite: true,
-						speed: <?php echo esc_attr( $attrs[ 'speed' ] ) ?>,
-						fade: <?php echo $attrs[ 'fade' ] ? 'true' : 'false' ?>,
-						autoplay: <?php echo $attrs[ 'autoplay' ] ? 'true' : 'false' ?>,
-						arrows: <?php echo $attrs[ 'enableArrow' ] ? 'true' : 'false' ?>,
-						dots: <?php echo esc_attr($dots) ?>,
-						prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
+						speed: <?php echo intval( $attrs['speed'] ); ?>,
+					    fade: <?php echo wp_json_encode( (bool) $attrs['fade'] ); ?>,
+					    autoplay: <?php echo wp_json_encode( (bool) $attrs['autoplay'] ); ?>,
+					    arrows: <?php echo wp_json_encode( (bool) $attrs['enableArrow'] ); ?>,
+					    dots: <?php echo wp_json_encode( (bool) $dots ); ?>,						
+					    prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
 						nextArrow: '<button type="button" class="gutentools-next-arrow gutentools-slider-arrow"><i class="fa fa-angle-right"></i></button>'
 					};
-					jQuery('#<?php echo esc_attr( $this->block_id ); ?> .gutentools-page-slider-init').slick( slider );
+					 jQuery(<?php echo wp_json_encode( $selector ); ?>).slick(slider);
 
 					<?php
 					$js = ob_get_clean();

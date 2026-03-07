@@ -4,8 +4,8 @@ Tags: Gutenberg, Block Editor, Gutenberg Templates
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.3
-Version: 1.1.3
+Stable tag: 1.1.4
+Version: 1.1.4
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -168,6 +168,12 @@ This plugin Supports all the Themes but the following themes are highly recommen
 = 1.1.3 =
 - Fixing Minor Issues
 
+= 1.1.4 =
+- Security: Fixed stored XSS vulnerability (CVE-2026-1395) in Post Slider and Page Slider blocks.
+- Security: Sanitized all block IDs and JS outputs for frontend sliders.
+- Security: Removed unsafe custom JS unescaping routines.
+- Code: Updated slider initialization to use wp_json_encode() and proper value casting.
+
 == Upgrade Notice ==
 
 = 1.0.0 =
@@ -215,3 +221,6 @@ This plugin Supports all the Themes but the following themes are highly recommen
 
 = 1.1.3 =
 - Fixing Minor Issues
+
+= 1.1.4 =
+- Version 1.1.4 fixes a security vulnerability (stored XSS) in slider blocks.

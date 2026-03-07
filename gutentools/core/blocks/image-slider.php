@@ -155,39 +155,40 @@ if( !class_exists( 'Gutentools_Image_Slider' ) ){
 
                     $slide = $this->count > esc_attr( $slideToShow[ 'values' ][ 'desktop' ] ) ? esc_attr( $slideToShow[ 'values' ][ 'desktop' ] ) : $this->count;
                     $fade = ( $attrs['fade'] && $slide == 1 ) ? 'true' : 'false';
-
+                    $dots = ( $attrs[ 'enableDots' ]  && $this->count > $slide )? 'true' : 'false';	
+                    $block_id = sanitize_html_class( $this->block_id );
+					$selector = '#' . $block_id . ' .gutentools-image-slider-init';
                     // Initialize the slider
                     ob_start();
-                    $dots = ( $attrs[ 'enableDots' ]  && $this->count > $slide )? 'true' : 'false';	
                     ?>
                     var slider = {
-                            dots: <?php echo esc_attr( $dots ) ?>,
-                            arrows: <?php echo $attrs['enableArrows'] ? 'true' : 'false'; ?>,
-                            infinite: true,
-                            speed: <?php echo esc_attr($attrs['speed']); ?>,
-                            autoplay: <?php echo $attrs['autoplay'] ? 'true' : 'false'; ?>,
-                            fade: <?php echo $fade ?>,
-                            slidesToShow: <?php echo esc_attr( $slide ) ?>,
-                            slidesToScroll: 1,
-                            cssEase: 'ease-in' ,
-                            prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
-                            nextArrow: '<button type="button" class="gutentools-next-arrow gutentools-slider-arrow"><i class="fa fa-angle-right"></i></button>',
-                            responsive: [
-                                {
-                                    breakpoint: 767,
-                                    settings: {
-                                        slidesToShow: <?php echo esc_attr( $slideToShow[ 'values' ][ 'mobile' ] ); ?>
-                                    }
-                                },
-                                {
-                                    breakpoint: 1024,
-                                    settings: {
-                                        slidesToShow: <?php echo esc_attr( $slideToShow[ 'values' ][ 'tablet' ] ); ?>
-                                    }
+                        dots: <?php echo wp_json_encode( (bool) $dots ); ?>,
+                        arrows: <?php echo wp_json_encode( (bool) $attrs['enableArrows'] ); ?>,
+                        infinite: true,
+                        speed: <?php echo intval( $attrs['speed'] ); ?>,
+                        autoplay: <?php echo wp_json_encode( (bool) $attrs['autoplay'] ); ?>,
+                        fade: <?php echo wp_json_encode( (bool) $fade ); ?>,
+                        slidesToShow: <?php echo intval( $slide ); ?>,
+                        slidesToScroll: 1,
+                        cssEase: 'ease-in',
+                        prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
+                        nextArrow: '<button type="button" class="gutentools-next-arrow gutentools-slider-arrow"><i class="fa fa-angle-right"></i></button>',
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: <?php echo intval( $slideToShow['values']['mobile'] ); ?>
                                 }
-                            ]
-                        };
-                        jQuery('#<?php echo esc_attr( $this->block_id ); ?> .gutentools-image-slider-init').slick( slider );
+                            },
+                            {
+                                breakpoint: 1024,
+                                settings: {
+                                    slidesToShow: <?php echo intval( $slideToShow['values']['tablet'] ); ?>
+                                }
+                            }
+                        ]
+                    };
+                    jQuery(<?php echo wp_json_encode($selector); ?>).slick(slider);
 
                     <?php
                     $js = ob_get_clean();

@@ -1,5 +1,7 @@
 <?php 
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 class Gutentools_Block extends Gutentools_Helper{
 	public static $styles=[];
 	public static $scripts=[];
@@ -36,7 +38,7 @@ class Gutentools_Block extends Gutentools_Helper{
 	}
 
 	public function __construct(){
-		self::$block_names[] = 'gutentools/' . $this->slug;
+		self::$block_names[] = $this->get_block_name();
 		add_action( 'init', [ $this, 'register' ] );
 		if ( self::$counter == 1 ) {
 			add_action('wp_enqueue_scripts', [$this, 'generate_css'], 98);
@@ -44,6 +46,14 @@ class Gutentools_Block extends Gutentools_Helper{
 
 		}
 		self::$counter++;
+	}
+
+	protected function get_block_name() {
+	    return 'gutentools/' . $this->slug;
+	}
+
+	protected function get_block_base_path() {
+	    return Gutentools_Path . '/build/blocks/' . $this->slug;
 	}
 
 	public function register(){
@@ -55,7 +65,7 @@ class Gutentools_Block extends Gutentools_Helper{
         }        
 
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-		register_block_type( Gutentools_Path . "/build/blocks/" . $this->slug, $args );
+		register_block_type( $this->get_block_base_path(), $args );
 		$script_handle = generate_block_asset_handle( 'gutentools/'.$this->slug, 'editorScript' );
     	wp_set_script_translations( $script_handle, 'gutentools');
 
@@ -101,27 +111,44 @@ class Gutentools_Block extends Gutentools_Helper{
 	}
 
 	public function generate_scripts() {
+
 	    $scripts = apply_filters('gutentools/scripts', self::$scripts);
+
+	    if ( empty($scripts) ) {
+	        return;
+	    }
+
 	    $js = '';
 
 	    foreach ($scripts as $script) {
-	        $js .= $script;
 
-	    }
-	    if (!empty($js)) {
-	    	$js = 'jQuery(document).ready(function(){' . $js . '});';
-	    	$escaped_js_code = esc_js( str_replace( "\n", '', $js ) );
-	        wp_register_script(
-	            'gutentools-inline-scripts', 
-	             Gutentools_Url.'/assets/scripts/empty.js',
-	            [], 
-	            gutentools_get_version(), 
-	            true 
-	        );
+	        if ( ! is_string($script) ) {
+	            continue;
+	        }
 
-	        wp_enqueue_script('gutentools-inline-scripts');
-	        wp_add_inline_script('gutentools-inline-scripts', self::fix_escaped_tags_in_js($escaped_js_code));
+	        $js .= trim($script);
 	    }
+
+	    if ( empty($js) ) {
+	        return;
+	    }
+
+	    $js = 'jQuery(document).ready(function(){' . $js . '});';
+
+	    wp_register_script(
+	        'gutentools-inline-scripts',
+	        Gutentools_Url . '/assets/scripts/empty.js',
+	        [],
+	        gutentools_get_version(),
+	        true
+	    );
+
+	    wp_enqueue_script('gutentools-inline-scripts');
+
+	    wp_add_inline_script(
+	        'gutentools-inline-scripts',
+	        $js
+	    );
 	}
 
 
@@ -221,7 +248,7 @@ class Gutentools_Block extends Gutentools_Helper{
 
 	public function get_attrs(){
 
-		$attr = file_get_contents( Gutentools_Path . '/build/blocks/' . $this->slug .'/block.json' ); // phpcs:ignore
+		$attr = file_get_contents( $this->get_block_base_path() .'/block.json' ); // phpcs:ignore
 		$attr = json_decode( $attr, true );
 		
 		return $attr[ 'attributes' ];

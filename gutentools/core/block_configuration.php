@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Gutentools Blocks
  * 
@@ -22,7 +25,7 @@ if( !class_exists( 'Gutentools_Config' ) ){
             add_action( 'enqueue_block_assets', [ $this, 'block_assets' ] );
     		add_filter( 'block_categories_all', [ $this, 'register_category' ], 99, 1 );
             add_action( 'after_gutentools_gutentools_load', [ $this, 'include_files' ] );
-            add_action( 'init', [ $this, 'load_text_domain' ] );
+            // add_action( 'init', [ $this, 'load_text_domain' ] );
     	}
 
         public function register_category( $categories ){
@@ -47,6 +50,7 @@ if( !class_exists( 'Gutentools_Config' ) ){
         public function include_files(){      	
 
             require_once Gutentools_Path . "core/gutentools_block.php";
+            do_action( 'gutentools_blocks_ready' );
             
             $files = glob(Gutentools_Path . 'core/blocks/*.php');
 
@@ -101,9 +105,9 @@ if( !class_exists( 'Gutentools_Config' ) ){
             }
         }
 
-        public function load_text_domain(){
-            load_plugin_textdomain( 'gutentools', false, Gutentools_Path . '/languages' );
-        }
+        // public function load_text_domain(){
+        //     load_plugin_textdomain( 'gutentools', false, Gutentools_Path . '/languages' );
+        // }
     }
 
     Gutentools_Config::get_instance();

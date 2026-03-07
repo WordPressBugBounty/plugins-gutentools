@@ -1,5 +1,7 @@
 <?php 
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 if( !class_exists( 'Gutentools_Settings' ) ){
 	class Gutentools_Settings{
 

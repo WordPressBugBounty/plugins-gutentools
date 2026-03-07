@@ -198,42 +198,43 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 						    ? $slideToShow['values']['desktop']
 						    : $count;
 					$dots = ( $attrs['enableDots'] && $count > $slide ) ? 'true' : 'false';
+					$block_id = sanitize_html_class( $this->block_id );
+					$selector = '#' . $block_id . ' .gutentools-post-slider-init';
 
 					ob_start();
-					// $dots = ( $attrs[ 'enableDots' ]  && $this->count > $slide )? 'true' : 'false';	
-
 					?>
 
 					var slider = {
-						slidesToShow: <?php echo esc_attr( $slide ) ?>,
-						slidesToScroll: 1,
-						infinite: true,
-						speed: <?php echo esc_attr( $attrs[ 'speed' ]) ?>,
-						autoplay: <?php echo esc_attr( $attrs[ 'autoplay' ] ? 'true' : 'false') ?>,
-						arrows: <?php echo esc_attr( $attrs[ 'enableArrow' ] ? 'true' : 'false' ) ?>,
-						dots: <?php echo esc_attr( $dots ) ?>,
-						prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
-						nextArrow: '<button type="button" class="gutentools-next-arrow gutentools-slider-arrow"><i class="fa fa-angle-right"></i></button>',
-						responsive: [
-							{
-								breakpoint: 767,
-								settings: {
-									slidesToShow: <?php echo esc_attr( $slideToShow[ 'values' ][ 'mobile' ] ); ?>
-								}
-							},
-							{
-								breakpoint: 1024,
-								settings: {
-									slidesToShow: <?php echo esc_attr( $slideToShow[ 'values' ][ 'tablet' ] ); ?>
-								}
-							}
-							]
+					    slidesToShow: <?php echo intval($slide); ?>,
+					    slidesToScroll: 1,
+					    infinite: true,
+					    speed: <?php echo intval($attrs['speed']); ?>,
+					    autoplay: <?php echo wp_json_encode((bool) $attrs['autoplay']); ?>,
+					    arrows: <?php echo wp_json_encode((bool) $attrs['enableArrow']); ?>,
+					    dots: <?php echo wp_json_encode((bool) $dots); ?>,
+					    prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',
+					    nextArrow: '<button type="button" class="gutentools-next-arrow gutentools-slider-arrow"><i class="fa fa-angle-right"></i></button>',
+					    responsive: [
+					        {
+					            breakpoint: 767,
+					            settings: {
+					                slidesToShow: <?php echo intval($slideToShow['values']['mobile']); ?>
+					            }
+					        },
+					        {
+					            breakpoint: 1024,
+					            settings: {
+					                slidesToShow: <?php echo intval($slideToShow['values']['tablet']); ?>
+					            }
+					        }
+					    ]
 					};
-					jQuery('#<?php echo esc_attr( $this->block_id ); ?> .gutentools-post-slider-init').slick( slider );
+
+					jQuery(<?php echo wp_json_encode($selector); ?>).slick(slider);
 
 					<?php
 					$js = ob_get_clean();
-					self::add_scripts( $js );
+					self::add_scripts($js);
 		    	}
 			}
 	    	

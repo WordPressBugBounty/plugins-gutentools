@@ -8031,21 +8031,24 @@ const InspectorPanel = props => {
         onChange: countUpNumber => setAttributes({
           countUpNumber
         }),
-        __nextHasNoMarginBottom: true
+        __nextHasNoMarginBottom: true,
+        __next40pxDefaultSize: true
       }), showCountUpNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
         label: "Prefix Text",
         value: prefixText,
         onChange: prefixText => setAttributes({
           prefixText
         }),
-        __nextHasNoMarginBottom: true
+        __nextHasNoMarginBottom: true,
+        __next40pxDefaultSize: true
       }), showCountUpNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
         label: "Suffix Text",
         value: suffixText,
         onChange: suffixText => setAttributes({
           suffixText
         }),
-        __nextHasNoMarginBottom: true
+        __nextHasNoMarginBottom: true,
+        __next40pxDefaultSize: true
       })]
     })
   });
@@ -8093,7 +8096,8 @@ const InspectorPanel = props => {
                 onChange: layoutStyle => setAttributes({
                   layoutStyle
                 }),
-                __nextHasNoMarginBottom: true
+                __nextHasNoMarginBottom: true,
+                __next40pxDefaultSize: true
               })
             })
           }), tab.name === "design" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -9844,6 +9848,7 @@ const BorderControl = ({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.__experimentalBorderBoxControl, {
     colors: colors,
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Borders"),
+    __next40pxDefaultSize: true,
     ...rest
   });
 };

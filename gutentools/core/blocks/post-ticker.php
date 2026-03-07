@@ -126,23 +126,26 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 					));
 
 					$animation = $this->get_slider_direction( $attrs[ 'animation' ]);
-					$block_id = $attrs[ 'block_id' ];
+										
+					$block_id = isset($attrs['block_id']) ? sanitize_html_class($attrs['block_id']) : '';
+					$type      = isset($animation[0]) ? $animation[0] : 'horizontal';
+					$direction = isset($animation[1]) ? $animation[1] : 'right';
+					$speed     = isset($animation[2]) ? intval($animation[2]) : 2000;
+
 					ob_start();
 					?>
 
 
-					jQuery('#<?php echo esc_js($block_id); ?> .gutentools-ticker-content').AcmeTicker({
-			            type:'<?php echo esc_js( $animation[0] ) ?>',
-			            speed: <?php echo esc_js( $animation[2] ) ?>,
-			            direction: '<?php echo esc_js( $animation[1] ) ?>',
-			            controls: {
-			                prev: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-prev'),
-			                toggle: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-toggle'),
-			                next: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-next')            
-			            }
-
-			        });
-
+					jQuery('#<?php echo esc_js( $block_id ); ?> .gutentools-ticker-content').AcmeTicker({
+					    type: '<?php echo esc_js( $type ); ?>',
+					    speed: <?php echo $speed; ?>,
+					    direction: '<?php echo esc_js( $direction ); ?>',
+					    controls: {
+					        prev: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-prev'),
+					        toggle: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-toggle'),
+					        next: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-next')            
+					    }
+					});
 			        jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-pause').on('click', function() {
 			            jQuery(this).hide();
 			            jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-play').show();
@@ -155,10 +158,7 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 			        
 					<?php
 					$js = ob_get_clean();
-					self::add_scripts( $js );
-
-
-					
+					self::add_scripts( $js );	
 		    	}
 			}
 	    	
@@ -216,7 +216,7 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 		    ?>
 		    <div id=<?php echo esc_attr( $attrs[ 'block_id' ] ) ?> class="gutentools-post-ticker">
 		    	<?php if( $this->attrs[ 'enableLabel' ] ): ?>
-			    <div class="gutentools-post-ticker-label"><?php echo $this->attrs['label'] ?></div>
+			    <div class="gutentools-post-ticker-label"><?php echo esc_attr( $this->attrs['label'] ) ?></div>
 				<?php endif; ?>
 			    <div class="gutentools-post-ticker-box">
 			        <ul class="gutentools-ticker-content">

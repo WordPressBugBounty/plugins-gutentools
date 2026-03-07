@@ -200,32 +200,6 @@ if( !class_exists( 'Gutentools_Helper' ) ):
 			echo wp_kses( $html, $allowed_tags );
 		}
 
-		public static function fix_escaped_tags_in_js( $escaped_js_code ) {
-		    $fixed_js_code = str_replace(
-		        [
-		            '&lt;',
-		            '&gt;', 
-		            '&quot;', 
-		            '&#039;', 
-		            '&amp;', 
-		            '\\\'',
-            		'\\"',
-		        ],
-		        [
-		            '<',
-		            '>',
-		            '"',
-		            "'",
-		            '&',
-		            "'", 
-            		'"',
-		        ],
-		        $escaped_js_code
-		    );
-
-		    return $fixed_js_code;
-		}
-
 		public static function is_woocommerce_active(){
 		    if( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ){
 		        return 1;
@@ -233,7 +207,6 @@ if( !class_exists( 'Gutentools_Helper' ) ):
 		        return 0;
 		    }
 		}
-
 
 	}
 endif;
