@@ -125,12 +125,19 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 						'css' => $desktop_css,
 					));
 
-					$animation = $this->get_slider_direction( $attrs[ 'animation' ]);
-										
-					$block_id = isset($attrs['block_id']) ? sanitize_html_class($attrs['block_id']) : '';
-					$type      = isset($animation[0]) ? $animation[0] : 'horizontal';
-					$direction = isset($animation[1]) ? $animation[1] : 'right';
-					$speed     = isset($animation[2]) ? intval($animation[2]) : 2000;
+					$animation = $this->get_slider_direction( $attrs['animation'] );
+
+					$block_id  = isset( $attrs['block_id'] ) ? sanitize_html_class( $attrs['block_id'] ) : '';
+					$type      = $animation[0] ?? 'horizontal';
+					$direction = $animation[1] ?? 'right';
+
+					if ( $type === 'marquee' ) {
+					    $inspector_speed = max( 1, (int) ( $attrs['speed'] ?? 500 ) );
+					    $speed = round( 200 / $inspector_speed, 3 );
+					    $speed = max( 0.1, min( 2.0, $speed ) ); 
+					} else {
+					    $speed = $animation[2] ?? 2000;
+					}
 
 					ob_start();
 					?>
@@ -171,12 +178,12 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 		        'slideleft' => ['horizontal', 'left', 600],
 		        'slideright' => ['horizontal', 'right', 600],
 		        'typewriter' => ['typewriter', '', 50],
-		        'continuous' => ['marquee', 'left', 0.05]
+		        'continuous' => ['marquee', 'left', 1]
 		    ];
 
 		    $normalizedValue = strtolower(trim($value));
 		    
-		    return $mappings[$normalizedValue] ?? ['horizontal', 'right'];
+		    return $mappings[$normalizedValue] ?? ['horizontal', 'right', 600];
 		}
 
 	    public function get_query(){
