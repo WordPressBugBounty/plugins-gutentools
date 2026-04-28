@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gutentools 1.1.5\n"
+"Project-Id-Version: Gutentools 1.1.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gutentools\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-11T14:59:22+01:00\n"
+"POT-Creation-Date: 2026-04-28T18:51:39+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: gutentools\n"
@@ -37,7 +37,7 @@ msgid "https://gutentools.com/"
 msgstr ""
 
 #: core/blocks/image-slider.php:172
-#: gutentools/core/blocks/image-slider.php:220
+#: gutentools/core/blocks/image-slider.php:172
 msgid "Please add images to the slider"
 msgstr ""
 
@@ -1386,11 +1386,11 @@ msgstr ""
 msgid "Buy Pro Now"
 msgstr ""
 
-#: src/components/pagination.js:118
-msgid "Previous"
+#: src/components/pagination.js:63
+msgid "Prev"
 msgstr ""
 
-#: src/components/pagination.js:138
+#: src/components/pagination.js:103
 msgid "Next"
 msgstr ""
 

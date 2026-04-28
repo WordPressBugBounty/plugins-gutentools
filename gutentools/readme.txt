@@ -4,8 +4,8 @@ Tags: Gutenberg, Block Editor, Gutenberg Templates
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.1.5
-Version: 1.1.5
+Stable tag: 1.1.6
+Version: 1.1.6
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -177,6 +177,9 @@ This plugin Supports all the Themes but the following themes are highly recommen
 = 1.1.5 =
 - Issues with image slider and post ticker fixed
 
+= 1.1.6 =
+- Fixed the issue with importer
+
 == Upgrade Notice ==
 
 = 1.0.0 =
@@ -230,3 +233,6 @@ This plugin Supports all the Themes but the following themes are highly recommen
 
 = 1.1.5 =
 - Issues with image slider and post ticker fixed
+
+= 1.1.6 =
+- Fixed the issue with importer

@@ -7777,126 +7777,79 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const LEFT_PAGE = "LEFT";
-const RIGHT_PAGE = "RIGHT";
-
-/**
- * Helper method for creating a range of numbers
- * range(1, 5) => [1, 2, 3, 4, 5]
- */
-const range = (from, to, step = 1) => {
-  let i = from;
-  const range = [];
-  while (i <= to) {
-    range.push(i);
-    i += step;
-  }
-  return range;
-};
 const Pagination = props => {
   const {
     totalRecords = null,
     pageLimit,
-    pageNeighbours = 0,
+    pageNeighbours = 2,
     initialPage,
     onPageChanged
   } = props;
   const [currentPage, setCurrentPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(initialPage || 1);
-  const totalNumbers = pageNeighbours * 2 + 3;
-  const totalBlocks = totalNumbers + 2;
   const totalPages = Math.ceil(totalRecords / pageLimit);
-  const pageNeighboursAdjusted = Math.max(0, Math.min(pageNeighbours, 2));
-  const handleMoveLeft = evt => {
-    evt.preventDefault();
-    gotoPage(currentPage - pageNeighboursAdjusted * 2 - 1);
-  };
-  const handleMoveRight = evt => {
-    evt.preventDefault();
-    gotoPage(currentPage + pageNeighboursAdjusted * 2 + 1);
-  };
   const gotoPage = page => {
-    const newPage = Math.max(0, Math.min(page, totalPages));
-    const paginationData = {
+    const newPage = Math.max(1, Math.min(page, totalPages));
+    setCurrentPage(newPage);
+    onPageChanged({
       currentPage: newPage,
       totalPages,
       pageLimit,
       totalRecords
-    };
-    setCurrentPage(newPage);
-    onPageChanged(paginationData);
-  };
-  const fetchPageNumbers = () => {
-    const pages = range(1, totalPages);
-    if (totalPages <= totalBlocks) {
-      return pages;
-    }
-    const startPage = Math.max(2, currentPage - pageNeighboursAdjusted);
-    const endPage = Math.min(totalPages - 1, currentPage + pageNeighboursAdjusted);
-    let pageNumbers = range(startPage, endPage);
-    if (startPage > 2) {
-      const extraPages = range(startPage - totalNumbers, startPage - 1);
-      pageNumbers = [LEFT_PAGE, ...extraPages, ...pageNumbers];
-    }
-    if (totalPages - endPage > 1) {
-      const extraPages = range(endPage + 1, endPage + totalNumbers);
-      pageNumbers = [...pageNumbers, ...extraPages, RIGHT_PAGE];
-    }
-    return [1, ...pageNumbers, totalPages];
+    });
   };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     gotoPage(initialPage || 1);
   }, [totalRecords, pageLimit, initialPage]);
-  const pages = fetchPageNumbers();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination-nav`,
-      "aria-label": "Icon Pagination",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination`,
-        children: pages.map((page, index) => {
-          if (page === LEFT_PAGE) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item`,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
-              className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-              href: "#",
-              "aria-label": "Previous",
-              onClick: handleMoveLeft,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                "aria-hidden": "true",
-                className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-prev`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-sr-only`,
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Previous", "gutentools")
-              })]
-            })
-          }, index);
-          if (page === RIGHT_PAGE) return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item`,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
-              className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-              href: "#",
-              "aria-label": "Next",
-              onClick: handleMoveRight,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                "aria-hidden": "true",
-                className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-next`
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-                className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-sr-only`,
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Next", "gutentools")
-              })]
-            })
-          }, index);
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-            className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === page ? " active" : ""}`,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-              className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-              href: "#",
-              onClick: () => gotoPage(page),
-              children: page
-            })
-          }, index);
+
+  // Build the window of page numbers around the current page
+  const getPageNumbers = () => {
+    const start = Math.max(1, currentPage - pageNeighbours);
+    const end = Math.min(totalPages, currentPage + pageNeighbours);
+    return Array.from({
+      length: end - start + 1
+    }, (_, i) => start + i);
+  };
+  if (!totalPages || totalPages <= 1) return null;
+  const pageNumbers = getPageNumbers();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
+    className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination-nav`,
+    "aria-label": "Pagination",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
+      className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination`,
+      children: [currentPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === 1 ? " disabled" : ""}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
+          href: "#",
+          onClick: e => {
+            e.preventDefault();
+            if (currentPage > 1) gotoPage(currentPage - 1);
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Prev", "gutentools")
         })
-      })
+      }), pageNumbers.map(page => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === page ? " active" : ""}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
+          href: "#",
+          onClick: e => {
+            e.preventDefault();
+            gotoPage(page);
+          },
+          children: page
+        })
+      }, page)), currentPage < totalPages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === totalPages ? " disabled" : ""}`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
+          href: "#",
+          onClick: e => {
+            e.preventDefault();
+            if (currentPage < totalPages) gotoPage(currentPage + 1);
+          },
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Next", "gutentools")
+        })
+      })]
     })
   });
 };
