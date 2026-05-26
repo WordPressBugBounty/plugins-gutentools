@@ -6571,7 +6571,7 @@ module.exports = union;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gutentools/faq-item","version":"1.0.0","title":"FAQ Item","category":"gutentools","description":"Easily add interactive FAQs to your pages. Help users find quick answers with an organized, collapsible layout.","keywords":["faq"],"parent":["gutentools/faq"],"example":{},"supports":{"reusable":false,"html":false},"attributes":{"title":{"type":"string"},"initialOpen":{"type":"boolean","default":false},"parent":{"type":"object"}},"usesContext":["gutentools/openIcon","gutentools/closeIcon","gutentools/iconColor","gutentools/iconBgColor","gutentools/iconPosition","gutentools/titleTypo","gutentools/titleColor","gutentools/faqItemMargin","gutentools/iconRadius","gutentools/faqItemPadding","gutentools/itemBgColor","gutentools/itemRadius","gutentools/iconSize"],"textdomain":"gutentools","viewScript":"file:./frontend.js","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gutentools/faq-item","version":"1.0.0","title":"FAQ Item","category":"gutentools","description":"Easily add interactive FAQs to your pages. Help users find quick answers with an organized, collapsible layout.","keywords":["faq"],"parent":["gutentools/faq"],"example":{},"supports":{"reusable":false,"html":false},"attributes":{"title":{"type":"string"},"initialOpen":{"type":"boolean","default":false},"parent":{"type":"object"}},"usesContext":["gutentools/openIcon","gutentools/closeIcon","gutentools/iconColor","gutentools/iconBgColor","gutentools/iconPosition","gutentools/titleTypo","gutentools/titleColor","gutentools/faqItemMargin","gutentools/iconRadius","gutentools/faqItemPadding","gutentools/itemBgColor","gutentools/itemRadius","gutentools/iconSize","gutentools/borders"],"textdomain":"gutentools","viewScript":"file:./frontend.js","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -6627,7 +6627,8 @@ function Edit(props) {
       "gutentools/iconRadius": iconRadius,
       "gutentools/itemRadius": itemRadius,
       "gutentools/itemBgColor": itemBgColor,
-      "gutentools/iconSize": iconSize
+      "gutentools/iconSize": iconSize,
+      "gutentools/borders": borders
     }
   } = props;
   const parentAttrs = {
@@ -6643,14 +6644,37 @@ function Edit(props) {
     iconRadius,
     itemBgColor,
     itemRadius,
-    iconSize
+    iconSize,
+    borders
   };
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
     setAttributes({
       parent: parentAttrs
     });
-  }, [openIcon, closeIcon, iconColor, iconBgColor, iconPosition, titleTypo, titleColor, faqItemPadding, faqItemMargin, iconRadius, itemBgColor, itemRadius, iconSize]);
+  }, [openIcon, closeIcon, iconColor, iconBgColor, iconPosition, titleTypo, titleColor, faqItemPadding, faqItemMargin, iconRadius, itemBgColor, itemRadius, iconSize, borders]);
   const [isOpen, setIsOpen] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(initialOpen);
+  const borderStyle = {};
+  if (borders) {
+    if (borders.left) {
+      borderStyle.borderLeft = `${borders.left.width || "initial"} ${borders.left.style || "solid"} ${borders.left.color || "white"}`;
+    }
+    if (borders.right) {
+      borderStyle.borderRight = `${borders.right.width || "initial"} ${borders.right.style || "solid"} ${borders.right.color || "white"}`;
+    }
+    if (borders.top) {
+      borderStyle.borderTop = `${borders.top.width || "initial"} ${borders.top.style || "solid"} ${borders.top.color || "white"}`;
+    }
+    if (borders.bottom) {
+      borderStyle.borderBottom = `${borders.bottom.width || "initial"} ${borders.bottom.style || "solid"} ${borders.bottom.color || "white"}`;
+    }
+
+    // Only set general border if no individual sides are defined
+    if (!borders.left && !borders.right && !borders.top && !borders.bottom) {
+      borderStyle.border = `${borders.width || "initial"} ${borders.style || "solid"} ${borders.color || "white"}`;
+    }
+  } else {
+    borderStyle.border = "none"; // Default to no border if `borders` is null or undefined
+  }
   const toggle = () => {
     const newState = !isOpen;
     setIsOpen(newState);
@@ -6673,7 +6697,8 @@ function Edit(props) {
     backgroundColor: itemBgColor,
     ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getDimensionStyle)("padding", faqItemPadding),
     ...(0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getDimensionStyle)("margin", faqItemMargin),
-    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getResponsiveRangeVal)(itemRadius)
+    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_6__.getResponsiveRangeVal)(itemRadius),
+    ...borderStyle
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, {
@@ -6758,6 +6783,29 @@ function Save({
     parent,
     initialOpen
   } = attributes;
+  const borders = parent?.borders;
+  const borderStyle = {};
+  if (borders) {
+    if (borders.left) {
+      borderStyle.borderLeft = `${borders.left.width || "initial"} ${borders.left.style || "solid"} ${borders.left.color || "white"}`;
+    }
+    if (borders.right) {
+      borderStyle.borderRight = `${borders.right.width || "initial"} ${borders.right.style || "solid"} ${borders.right.color || "white"}`;
+    }
+    if (borders.top) {
+      borderStyle.borderTop = `${borders.top.width || "initial"} ${borders.top.style || "solid"} ${borders.top.color || "white"}`;
+    }
+    if (borders.bottom) {
+      borderStyle.borderBottom = `${borders.bottom.width || "initial"} ${borders.bottom.style || "solid"} ${borders.bottom.color || "white"}`;
+    }
+
+    // Only set general border if no individual sides are defined
+    if (!borders.left && !borders.right && !borders.top && !borders.bottom) {
+      borderStyle.border = `${borders.width || "initial"} ${borders.style || "solid"} ${borders.color || "white"}`;
+    }
+  } else {
+    borderStyle.border = "none"; // Default to no border if `borders` is null or undefined
+  }
   const iconStyle = {
     backgroundColor: parent?.iconBgColor,
     color: parent?.iconColor,
@@ -6773,7 +6821,8 @@ function Save({
     backgroundColor: parent?.itemBgColor,
     ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getDimensionStyle)("padding", parent?.faqItemPadding),
     ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getDimensionStyle)("margin", parent?.faqItemMargin),
-    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getResponsiveRangeVal)(parent?.itemRadius)
+    borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getResponsiveRangeVal)(parent?.itemRadius),
+    ...borderStyle
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save(),
@@ -6844,42 +6893,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./save */ "./src/blocks/faq-item/depricated/save.js");
 
 
-// const isEligible = (attributes) => {
-// 	// Optional: logic to detect blocks missing new props (e.g. fontStyle)
-// 	return (
-// 		!attributes?.titleTypo?.letterSpacing && !attributes?.titleTypo?.fontStyle
-// 	);
-// };
-
-// const migrate = (attributes) => {
-// 	// Return the full new shape with defaults added
-// 	const { titleTypo = {}, ...rest } = attributes;
-
-// 	return {
-// 		...rest,
-// 		titleTypo: {
-// 			...titleTypo,
-// 			fontStyle: "",
-// 			letterSpacing: {
-// 				activeUnit: "px",
-// 				units: ["px"],
-// 				values: {
-// 					desktop: 0,
-// 					tablet: 0,
-// 					mobile: 0,
-// 				},
-// 			},
-// 		},
-// 	};
-// };
-
- // Your old save function that doesn't include new styles
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   attributes: _attributes__WEBPACK_IMPORTED_MODULE_0__.attributes,
   save: _save__WEBPACK_IMPORTED_MODULE_1__["default"]
-  // isEligible,
-  // migrate,
 }]);
 
 /***/ }),
@@ -6916,20 +6932,15 @@ function Save({
     parent,
     initialOpen
   } = attributes;
-  const cleanTypo = {
-    ...parent?.titleTypo
-  };
-  delete cleanTypo.letterSpacing;
-  delete cleanTypo.fontStyle;
   const iconStyle = {
     backgroundColor: parent?.iconBgColor,
     color: parent?.iconColor,
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getTypoStyle)(cleanTypo),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getTypoStyle)(parent?.titleTypo),
     borderRadius: (0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getResponsiveRangeVal)(parent?.iconRadius),
     ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getDimensionStyle)("size", parent?.iconSize)
   };
   const titleStyle = {
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getTypoStyle)(cleanTypo),
+    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_3__.getTypoStyle)(parent?.titleTypo),
     color: parent?.titleColor
   };
   const itemStyles = {
@@ -6989,7 +7000,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// console.log("Deprecated versions:", deprecated);
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
   /**
    * @see ./edit.js

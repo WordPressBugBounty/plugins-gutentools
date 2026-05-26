@@ -72,7 +72,7 @@
 			<div class="gutentools-admin-page-content-box">
 				<h2><?php echo esc_html__( 'Recommended Themes', 'gutentools' ); ?></h2>
 				<p><?php echo esc_html__( 'Discover themes that perfectly complement Gutentools.', 'gutentools' ); ?></p>
-				<a target="_blank" href="https://demos.gutentools.com/"><?php echo esc_html__( 'Check Our Themes', 'gutentools' ); ?></a>
+				<a target="_blank" href="https://themegrove.com//"><?php echo esc_html__( 'Check Our Themes', 'gutentools' ); ?></a>
 			</div>
 		</div>
 	</div>

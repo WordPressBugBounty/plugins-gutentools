@@ -75,7 +75,9 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 					    'imgRadius'        	 => 'border-radius', 
 					    'dotsRadius'         => 'border-radius', 
 					    'dotsSize'           => 'size',
-					    'arrowIconSize'      => 'font-size'
+					    'arrowIconSize'      => 'font-size',
+					    'postRadius'         => 'border-radius', 
+
 					];
 
 					$typography_properties = [
@@ -96,6 +98,9 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 						$devices_style = [
 							'.gutentools-post-slider-wrapper' => array_merge(
 								$padding[ $device ]
+							),
+							'.gutentools-post-slider-wrapper-inner' => array_merge(
+								$postRadius[ $device ]
 							),
 							'.gutentools-post-title a' => array_merge(
 								$titlePadding[ $device ],
@@ -197,7 +202,7 @@ if( !class_exists( 'Gutentools_Post_Slider' ) ){
 					$slide = $count > $slideToShow['values']['desktop']
 						    ? $slideToShow['values']['desktop']
 						    : $count;
-					$dots = ( $attrs['enableDots'] && $count > $slide ) ? 'true' : 'false';
+					$dots = ( $attrs['enableDots'] && $count > $slide );
 					$block_id = sanitize_html_class( $this->block_id );
 					$selector = '#' . $block_id . ' .gutentools-post-slider-init';
 

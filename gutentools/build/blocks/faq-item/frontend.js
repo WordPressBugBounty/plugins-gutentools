@@ -61,10 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
       content,
       toggleBtn
     } = initFAQItem(faqItem);
-    const title = faqItem.querySelector(".gutentools-faq-title");
-    toggleBtn.addEventListener("click", () => handleFAQClick(faqItem, content, toggleBtn));
-    if (title) {
-      title.addEventListener("click", () => handleFAQClick(faqItem, content, toggleBtn));
+    const titleWrapper = faqItem.querySelector(".gutentools-faq-title-wrapper");
+
+    // toggleBtn.addEventListener("click", () =>
+    // 	handleFAQClick(faqItem, content, toggleBtn),
+    // );
+    if (titleWrapper) {
+      titleWrapper.addEventListener("click", () => handleFAQClick(faqItem, content, toggleBtn));
     }
   });
 });

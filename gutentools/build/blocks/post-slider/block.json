@@ -757,6 +757,30 @@
     "autoplay": {
       "type": "boolean",
       "default": true
+    },
+    "postRadius": {
+      "type": "object",
+      "default": {
+        "activeUnit": "px",
+        "responsiveViews": [
+          "desktop",
+          "tablet",
+          "mobile"
+        ],
+        "units": [
+          "px",
+          "em"
+        ],
+        "range": {
+          "min": 0,
+          "max": 100
+        },
+        "values": {
+          "desktop": 0,
+          "tablet": 0,
+          "mobile": 0
+        }
+      }
     }
   },
   "textdomain": "gutentools",

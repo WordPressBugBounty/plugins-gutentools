@@ -42,7 +42,8 @@
     "gutentools/faqItemPadding",
     "gutentools/itemBgColor",
     "gutentools/itemRadius",
-    "gutentools/iconSize"
+    "gutentools/iconSize",
+    "gutentools/borders"
   ],
   "textdomain": "gutentools",
   "viewScript": "file:./frontend.js",

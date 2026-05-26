@@ -14,6 +14,7 @@
 .gutentools-post-slider-wrapper-inner .gutentools-post-title a {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .gutentools-post-slider-wrapper .gutentools-slider-btn,
@@ -96,6 +97,10 @@ ul.slick-dots .active button {
 
 .gutentools-align-right .gutentools-post-meta-wrapper {
   justify-content: flex-end;
+}
+
+.gutentools-post-title a {
+  display: block;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

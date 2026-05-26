@@ -111,8 +111,8 @@ if( !class_exists( 'Gutentools_Image_Slider' ) ){
                 $slide    = $this->count > (int) $slideToShow['values']['desktop']
                     ? (int) $slideToShow['values']['desktop']
                     : $this->count;
-                $fade     = ( $attrs['fade'] && $slide == 1 ) ? 'true' : 'false';
-                $dots     = ( $attrs['enableDots'] && $this->count > $slide ) ? 'true' : 'false';
+                $fade     = ( $attrs['fade'] && $slide == 1 );
+                $dots     = ( $attrs['enableDots'] && $this->count > $slide );
                 $block_id = sanitize_html_class( $this->block_id );
                 $selector = '#' . $block_id . ' .gutentools-image-slider-init';
 
@@ -124,8 +124,8 @@ if( !class_exists( 'Gutentools_Image_Slider' ) ){
                     infinite      : true,
                     speed         : <?php echo (int) $attrs['speed']; ?>,
                     autoplay      : <?php echo wp_json_encode( (bool) $attrs['autoplay'] ); ?>,
-                    fade          : <?php echo $fade; ?>,
-                    dots          : <?php echo $dots; ?>,
+                    fade          : <?php echo wp_json_encode( (bool) $fade ); ?>,
+                    dots          : <?php echo wp_json_encode( (bool) $dots ); ?>,
                     arrows        : <?php echo wp_json_encode( (bool) $attrs['enableArrows'] ); ?>,
                     cssEase       : 'ease-in',
                     prevArrow: '<button type="button" class="gutentools-prev-arrow gutentools-slider-arrow"><i class="fa fa-angle-left"></i></button>',

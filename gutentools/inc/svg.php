@@ -497,7 +497,9 @@ if( !class_exists( 'Gutentools_Icons' ) ){
                 </g>
                 </svg>'
             );
-             return isset($svg[$icon]) ? $svg[$icon] : '<!-- SVG not found -->';
+
+            $svg = apply_filters( 'gutentools_icons', $svg );
+            return isset($svg[$icon]) ? $svg[$icon] : '<!-- SVG not found -->';
         }
     }
 }

@@ -347,6 +347,14 @@
           ]
         }
       }
+    },
+    "borders": {
+      "type": "object",
+      "default": {
+        "color": "",
+        "style": "",
+        "width": "0"
+      }
     }
   },
   "providesContext": {
@@ -362,7 +370,8 @@
     "gutentools/titleColor": "titleColor",
     "gutentools/iconSize": "iconSize",
     "gutentools/itemRadius": "itemRadius",
-    "gutentools/itemBgColor": "itemBgColor"
+    "gutentools/itemBgColor": "itemBgColor",
+    "gutentools/borders": "borders"
   },
   "textdomain": "gutentools",
   "editorScript": "file:./index.js",

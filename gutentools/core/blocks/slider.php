@@ -173,7 +173,7 @@ if( !class_exists( 'Gutentools_Page_Slider' ) ){
 						'attrs' => $attrs,
 						'css' => $desktop_css,
 					));
-					$dots = ( $attrs[ 'enableDots' ]  && $this->count > 1 )? 'true' : 'false';
+					$dots = ( $attrs[ 'enableDots' ]  && $this->count > 1 );
 					$block_id = sanitize_html_class( $this->block_id );
 					$selector = '#' . $block_id . ' .gutentools-page-slider-init';
 					ob_start();
@@ -267,7 +267,7 @@ if( !class_exists( 'Gutentools_Page_Slider' ) ){
 
 		            $link = $is_wp_post ? get_the_permalink( $id ) : '#'; 
 		            
-		            $desc = $is_wp_post ? get_the_excerpt( $id ) : ( isset( $data[$index]->description ) ? $data[$index]->description : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at nulla quam. Praesent commodo ipsum sit amet nunc volutpat, at vehicula turpis venenatis. Sed eget sem nec erat laoreet dictum. In purus velit, consequat suscipit pellentesque ut, venenatis in dui. In iaculis iaculis sapien porta sagittis.' );
+		            $desc = isset( $data[$index]->description ) ? $data[$index]->description : '' ;
 
 		            $custom_link = isset( $data[$index]->link ) ? $data[$index]->link : '';
 
