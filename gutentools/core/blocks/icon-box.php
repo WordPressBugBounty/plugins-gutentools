@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Icon_Box' ) ){
 
 	class Gutentools_Icon_Box extends Gutentools_Block{

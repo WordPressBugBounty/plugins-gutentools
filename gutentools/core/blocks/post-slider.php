@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Post_Slider' ) ){
 
 	class Gutentools_Post_Slider extends Gutentools_Block{

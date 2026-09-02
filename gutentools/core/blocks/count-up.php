@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Count_Up' ) ){
 
 	class Gutentools_Count_Up extends Gutentools_Block{

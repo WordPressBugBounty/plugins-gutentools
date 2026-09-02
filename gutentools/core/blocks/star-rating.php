@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Star_Rating' ) ){
 
 	class Gutentools_Star_Rating extends Gutentools_Block{

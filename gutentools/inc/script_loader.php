@@ -91,6 +91,8 @@ if( !class_exists( 'Gutentools_Script_Loader' ) ){
 			wp_enqueue_style(
                 'jquery-ticker-css', 
                 Gutentools_Url . '/assets/vendors/news-ticker-controls-acme/css/style.min.css', 
+                array(),
+                "1.8.0"
             );
 
             wp_enqueue_script(

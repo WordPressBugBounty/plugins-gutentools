@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Progress_Bar' ) ){
 
 	class Gutentools_Progress_Bar extends Gutentools_Block{

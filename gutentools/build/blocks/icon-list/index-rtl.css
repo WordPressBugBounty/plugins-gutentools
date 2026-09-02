@@ -1,0 +1,39 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon-list/styles/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ */
+.gutentools-icon-list-wrapper .gutentools-icon-list-text {
+  outline: none;
+}
+
+.gutentools-icon-list-repeater .gutentools-item {
+  box-shadow: none !important;
+}
+.gutentools-icon-list-repeater .popup-content {
+  box-shadow: none !important;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  padding: 0;
+}
+.gutentools-icon-list-repeater .gutentools-icon-selector {
+  box-shadow: none !important;
+}
+.gutentools-icon-list-repeater .gutentools-icon-selector .gutentools-icon-items-wrapper > div {
+  margin: 3px;
+  height: 30px;
+  background: #f6f6f6;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.gutentools-icon-list-repeater .gutentools-icon-selector h2.gutentools-icon-label {
+  font-size: 13px;
+  margin: 8px 0;
+}
+.gutentools-icon-list-repeater .gutentools-icon-selector .gutentools-icon-selector-search input {
+  height: 32px;
+  border-radius: 2px;
+  border-color: #ddd;
+  box-shadow: none;
+}

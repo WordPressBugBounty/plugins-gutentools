@@ -1,4 +1,5 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; 
 if( !class_exists( 'Gutentools_Testimonial' ) ){
 
 	class Gutentools_Testimonial extends Gutentools_Block{

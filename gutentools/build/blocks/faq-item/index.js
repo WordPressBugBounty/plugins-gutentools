@@ -8153,6 +8153,18 @@ const svg = {
         d: "M705 120 c-4 -7 -3 -16 3 -22 14 -14 47 -6 47 12 0 18 -40 26 -50 10z"
       })]
     })
+  }),
+  iconList: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    width: "24",
+    height: "24",
+    "aria-hidden": "true",
+    focusable: "false",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+      fill: "#2A43FF",
+      d: "M4 6.5A1.5 1.5 0 1 1 4 9.5 1.5 1.5 0 0 1 4 6.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 11A1.5 1.5 0 1 1 4 14 1.5 1.5 0 0 1 4 11zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 15.5A1.5 1.5 0 1 1 4 18.5 1.5 1.5 0 0 1 4 15.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5z"
+    })
   })
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (svg);

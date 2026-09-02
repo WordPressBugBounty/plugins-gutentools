@@ -1,0 +1,50 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icon-list/styles/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+.gutentools-icon-list-wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.gutentools-icon-list-wrapper.gutentools-icon-list-layout-grid {
+  display: grid;
+  flex-direction: unset;
+}
+.gutentools-icon-list-wrapper .gutentools-icon-list-item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.gutentools-icon-list-wrapper .gutentools-icon-list-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  line-height: 1;
+}
+.gutentools-icon-list-wrapper .gutentools-icon-list-icon i {
+  line-height: 1;
+}
+.gutentools-icon-list-wrapper .gutentools-icon-list-text {
+  display: block;
+  margin: 0;
+  min-width: 0;
+}
+.gutentools-icon-list-wrapper.gutentools-align-center .gutentools-icon-list-item {
+  justify-content: center;
+}
+.gutentools-icon-list-wrapper.gutentools-align-right .gutentools-icon-list-item {
+  justify-content: flex-end;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

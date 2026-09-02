@@ -1,4 +1,5 @@
-<?php 
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; 
 if( !class_exists( 'Gutentools_Advance_Heading' ) ){
 
 	class Gutentools_Advance_Heading extends Gutentools_Block{

@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_FAQ_Item' ) ){
 
 	class Gutentools_FAQ_Item extends Gutentools_Block{

@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gutentools 1.1.7\n"
+"Project-Id-Version: Gutentools 1.1.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gutentools\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-26T18:04:18+02:00\n"
+"POT-Creation-Date: 2026-09-02T10:48:00+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: gutentools\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "https://gutentools.com/"
 msgstr ""
 
-#: core/blocks/image-slider.php:172
+#: core/blocks/image-slider.php:173
 #: gutentools/core/blocks/image-slider.php:172
 msgid "Please add images to the slider"
 msgstr ""
@@ -52,26 +52,26 @@ msgid "Failed to copy file to uploads directory."
 msgstr ""
 
 #: gutentools/inc/admin-notice.php:25
-#: inc/admin-notice.php:25
+#: inc/admin-notice.php:52
 msgid "Gutentools Pro"
 msgstr ""
 
 #: gutentools/inc/admin-notice.php:26
 #: gutentools/inc/admin-page.php:25
-#: inc/admin-notice.php:26
+#: inc/admin-notice.php:56
 #: inc/admin-page.php:25
 msgid "Unlock your website’s potential with GutenTools – the flexible, user-friendly Gutenberg visual sitebuilder for WordPress."
 msgstr ""
 
 #: gutentools/inc/admin-notice.php:28
 #: gutentools/inc/admin-page.php:27
-#: inc/admin-notice.php:28
+#: inc/admin-notice.php:70
 #: inc/admin-page.php:27
 msgid "Upgrade To Pro"
 msgstr ""
 
 #: gutentools/inc/admin-notice.php:29
-#: inc/admin-notice.php:29
+#: inc/admin-notice.php:77
 msgid "Plugin Info"
 msgstr ""
 
@@ -178,6 +178,7 @@ msgstr ""
 #: src/blocks/faq/components/inspector.js:76
 #: src/blocks/icon-box/components/inspector.js:56
 #: src/blocks/icon-box/components/inspector.js:110
+#: src/blocks/icon-list/components/inspector.js:102
 #: src/blocks/image-slider/components/inspector.js:202
 #: src/blocks/post-slider/components/inspector.js:333
 #: src/blocks/post-ticker/components/inspector.js:185
@@ -207,6 +208,7 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:178
 #: src/blocks/faq/components/inspector.js:81
 #: src/blocks/icon-box/components/inspector.js:115
+#: src/blocks/icon-list/components/inspector.js:107
 #: src/blocks/image-slider/components/inspector.js:207
 #: src/blocks/post-slider/components/inspector.js:338
 #: src/blocks/post-ticker/components/inspector.js:190
@@ -224,6 +226,7 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:183
 #: src/blocks/faq/components/inspector.js:86
 #: src/blocks/icon-box/components/inspector.js:120
+#: src/blocks/icon-list/components/inspector.js:112
 #: src/blocks/image-slider/components/inspector.js:212
 #: src/blocks/post-slider/components/inspector.js:343
 #: src/blocks/post-ticker/components/inspector.js:195
@@ -256,6 +259,7 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:223
 #: src/blocks/faq/components/inspector.js:149
 #: src/blocks/icon-box/components/inspector.js:155
+#: src/blocks/icon-list/components/inspector.js:146
 #: src/blocks/post-slider/components/inspector.js:383
 #: src/blocks/post-ticker/components/inspector.js:277
 #: src/blocks/progress-bar/components/inspector.js:135
@@ -300,6 +304,7 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:298
 #: src/blocks/faq/components/inspector.js:206
 #: src/blocks/icon-box/components/inspector.js:218
+#: src/blocks/icon-list/components/inspector.js:185
 #: src/blocks/post-slider/components/inspector.js:440
 #: src/blocks/post-ticker/components/inspector.js:324
 #: src/blocks/progress-bar/components/inspector.js:193
@@ -331,6 +336,8 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:381
 #: src/blocks/faq/components/inspector.js:221
 #: src/blocks/icon-box/components/inspector.js:284
+#: src/blocks/icon-list/components/inspector.js:122
+#: src/blocks/icon-list/components/inspector.js:234
 #: src/blocks/post-slider/components/inspector.js:629
 #: src/blocks/post-ticker/components/inspector.js:382
 #: src/blocks/progress-bar/components/inspector.js:210
@@ -389,6 +396,7 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:369
 #: src/blocks/icon-box/components/inspector.js:141
 #: src/blocks/icon-box/components/inspector.js:272
+#: src/blocks/icon-list/components/inspector.js:222
 #: src/blocks/star-rating/components/inspector.js:95
 #: src/blocks/team-member/components/inspector.js:131
 #: src/blocks/team-member/components/inspector.js:254
@@ -399,6 +407,8 @@ msgstr ""
 
 #: src/blocks/call-to-actions/components/inspector.js:129
 #: src/blocks/count-up/components/inspector.js:197
+#: src/blocks/icon-list/components/inspector.js:48
+#: src/blocks/icon-list/components/inspector.js:50
 msgid "Layout"
 msgstr ""
 
@@ -523,6 +533,8 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:342
 #: src/blocks/icon-box/components/inspector.js:65
 #: src/blocks/icon-box/components/inspector.js:245
+#: src/blocks/icon-list/components/inspector.js:83
+#: src/blocks/icon-list/components/inspector.js:196
 #: src/blocks/image-slider/components/inspector.js:162
 msgid "Icon"
 msgstr ""
@@ -550,12 +562,14 @@ msgstr ""
 #: src/blocks/count-up/components/inspector.js:238
 #: src/blocks/faq/components/inspector.js:173
 #: src/blocks/icon-box/components/inspector.js:172
+#: src/blocks/icon-list/components/inspector.js:162
 msgid "Icon Bg Color"
 msgstr ""
 
 #: src/blocks/count-up/components/inspector.js:249
 #: src/blocks/faq/components/inspector.js:183
 #: src/blocks/icon-box/components/inspector.js:183
+#: src/blocks/icon-list/components/inspector.js:152
 #: src/blocks/star-rating/components/inspector.js:125
 msgid "Icon Color"
 msgstr ""
@@ -570,12 +584,14 @@ msgstr ""
 
 #: src/blocks/count-up/components/inspector.js:346
 #: src/blocks/icon-box/components/inspector.js:249
+#: src/blocks/icon-list/components/inspector.js:200
 msgid "Box Size"
 msgstr ""
 
 #: src/blocks/count-up/components/inspector.js:354
 #: src/blocks/faq/components/inspector.js:138
 #: src/blocks/icon-box/components/inspector.js:257
+#: src/blocks/icon-list/components/inspector.js:207
 #: src/blocks/image-slider/components/inspector.js:279
 #: src/blocks/post-slider/components/inspector.js:534
 #: src/blocks/post-ticker/components/inspector.js:348
@@ -713,6 +729,72 @@ msgstr ""
 #: src/blocks/icon-box/components/inspector.js:340
 #: src/blocks/team-member/components/inspector.js:363
 msgid "Description Margin"
+msgstr ""
+
+#: src/blocks/icon-list/components/edit.js:177
+msgid "List item..."
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:17
+msgid "List item"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:53
+msgid "List"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:54
+msgid "Grid"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:63
+msgid "Columns"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:72
+msgid "List Items"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:126
+msgid "Item Gap"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:134
+msgid "Icon Gap"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:172
+#: src/blocks/testimonial/components/inspector.js:212
+msgid "Text Color"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:189
+#: src/blocks/post-slider/components/inspector.js:202
+#: src/blocks/post-slider/components/inspector.js:254
+#: src/blocks/post-ticker/components/inspector.js:145
+#: src/blocks/slider/components/inspector.js:173
+#: src/blocks/slider/components/inspector.js:195
+#: src/blocks/slider/components/inspector.js:247
+#: src/blocks/testimonial/components/inspector.js:262
+msgid "Text"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:238
+msgid "List Padding"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:247
+msgid "List Margin"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:254
+#: src/blocks/testimonial/components/inspector.js:391
+msgid "Text Padding"
+msgstr ""
+
+#: src/blocks/icon-list/components/inspector.js:263
+#: src/blocks/testimonial/components/inspector.js:402
+msgid "Text Margin"
 msgstr ""
 
 #: src/blocks/image-slider/components/edit.js:241
@@ -938,16 +1020,6 @@ msgstr ""
 
 #: src/blocks/post-slider/components/inspector.js:187
 msgid "Post Radius"
-msgstr ""
-
-#: src/blocks/post-slider/components/inspector.js:202
-#: src/blocks/post-slider/components/inspector.js:254
-#: src/blocks/post-ticker/components/inspector.js:145
-#: src/blocks/slider/components/inspector.js:173
-#: src/blocks/slider/components/inspector.js:195
-#: src/blocks/slider/components/inspector.js:247
-#: src/blocks/testimonial/components/inspector.js:262
-msgid "Text"
 msgstr ""
 
 #: src/blocks/post-slider/components/inspector.js:206
@@ -1330,10 +1402,6 @@ msgstr ""
 msgid "Name Color"
 msgstr ""
 
-#: src/blocks/testimonial/components/inspector.js:212
-msgid "Text Color"
-msgstr ""
-
 #: src/blocks/testimonial/components/inspector.js:224
 msgid "Quote Icon Color"
 msgstr ""
@@ -1348,14 +1416,6 @@ msgstr ""
 
 #: src/blocks/testimonial/components/inspector.js:360
 msgid "Name Margin"
-msgstr ""
-
-#: src/blocks/testimonial/components/inspector.js:391
-msgid "Text Padding"
-msgstr ""
-
-#: src/blocks/testimonial/components/inspector.js:402
-msgid "Text Margin"
 msgstr ""
 
 #: src/components/exporter.js:9
@@ -1518,8 +1578,32 @@ msgstr ""
 msgid "Add Images"
 msgstr ""
 
-#: src/custom-control/repeater.js:55
+#: src/custom-control/repeater.js:33
+msgid "Are you sure, you want to delete?"
+msgstr ""
+
+#: src/custom-control/repeater.js:79
 msgid "Add New"
+msgstr ""
+
+#: src/custom-control/repeater.js:104
+msgid "Item"
+msgstr ""
+
+#: src/custom-control/repeater.js:111
+msgid "Move up"
+msgstr ""
+
+#: src/custom-control/repeater.js:121
+msgid "Move down"
+msgstr ""
+
+#: src/custom-control/repeater.js:130
+msgid "Duplicate"
+msgstr ""
+
+#: src/custom-control/repeater.js:139
+msgid "Remove"
 msgstr ""
 
 #: src/custom-control/typography.js:89

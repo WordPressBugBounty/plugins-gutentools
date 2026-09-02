@@ -181,24 +181,127 @@ span.components-base-control__label:empty {
 }
 
 .gutentools-repeater-wrapper .components-base-control {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+.gutentools-repeater-wrapper .components-base-control:last-child {
+  margin-bottom: 0;
 }
 .gutentools-repeater-wrapper .gutentools-item {
-  display: flex;
   width: 100%;
-  margin: 10px 0;
+  margin: 0 0 10px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: none;
+}
+.gutentools-repeater-wrapper .gutentools-item .gutentools-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+.gutentools-repeater-wrapper .gutentools-item .gutentools-item-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #1e1e1e;
 }
 .gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-selects {
-  width: 80%;
+  width: 100%;
 }
-.gutentools-repeater-wrapper .gutentools-item button.components-button.remove {
-  height: 32px;
-  background: #322b2b;
-  color: #fff;
-  border-radius: 0 3px 3px 0;
+.gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
-.gutentools-repeater-wrapper .gutentools-item button.components-button.remove:hover {
-  background-color: rgb(84, 42, 42);
+.gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-actions button.components-button {
+  height: 24px;
+  min-width: 24px;
+  width: 24px;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  color: #757575;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+}
+.gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-actions button.components-button:hover:not(:disabled) {
+  background: #f0f0f0;
+  color: #1e1e1e;
+  box-shadow: none;
+}
+.gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-actions button.components-button:disabled {
+  opacity: 0.35;
+}
+.gutentools-repeater-wrapper .gutentools-item .gutentools-repeater-actions button.components-button.remove:hover:not(:disabled) {
+  background: #fcebeb;
+  color: #cc1818;
+}
+.gutentools-repeater-wrapper > button.components-button {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+  box-shadow: none;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector {
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button,
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  color: #1e1e1e;
+  box-shadow: none;
+  cursor: pointer;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button:hover,
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button:hover {
+  border-color: #999;
+  background: #fafafa;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button i,
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button i {
+  margin: 0;
+  font-size: 14px;
+  width: 20px;
+  text-align: center;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button .gutentools-icon-selector-label,
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button .gutentools-icon-selector-label {
+  flex: 1;
+  text-align: left;
+  font-size: 12px;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button > .fa-sort-down,
+.gutentools-repeater-wrapper .gutentools-icon-selector button.gutentools-icon-selector-button > .fa-sort-down {
+  opacity: 0.55;
+  font-size: 12px;
+}
+.gutentools-repeater-wrapper .gutentools-icon-selector .gutentools-icon-selector {
+  margin-top: 6px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  box-shadow: none;
 }
 
 .components-textarea-control {
@@ -206,16 +309,12 @@ span.components-base-control__label:empty {
   display: block;
 }
 
-.gutentools-repeater-wrapper > button {
-  display: block;
-  margin-top: 10px;
-}
-
 .gutentools-icon-selector {
   background: #fff;
-  padding: 15px;
-  box-shadow: 0 0 10px #b3b3b3;
-  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: none;
+  border-radius: 2px;
 }
 .gutentools-icon-selector .gutentools-icon-items-wrapper {
   display: flex;
@@ -227,10 +326,10 @@ span.components-base-control__label:empty {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eee;
-  margin: 5px;
-  height: 34px;
-  border-radius: 3px;
+  background: #f6f6f6;
+  margin: 3px;
+  height: 32px;
+  border-radius: 2px;
   cursor: pointer;
 }
 .gutentools-icon-selector .gutentools-icon-items-wrapper > div a {
@@ -252,24 +351,27 @@ span.components-base-control__label:empty {
 .gutentools-icon-selector-search input {
   display: block;
   width: 100%;
-  border: 1px solid #eee;
-  height: 40px;
-  border-radius: 8px;
+  border: 1px solid #ddd;
+  height: 36px;
+  border-radius: 2px;
+  box-shadow: none;
 }
 
 h2.gutentools-icon-label {
   text-align: center;
-  color: #000;
-  font-size: 18px;
+  color: #1e1e1e;
+  font-size: 13px;
+  margin: 8px 0;
 }
 
 .gutentools-icon-selector-pagination {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 12px;
 }
 .gutentools-icon-selector-pagination span.search-label {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: block;
+  font-size: 12px;
 }
 
 ul.gutentools-pagination {
@@ -291,25 +393,39 @@ ul.gutentools-pagination li.active a {
 }
 
 .components-base-control__field .gutentools-icon-selector {
-  background: #fff;
+  background: transparent;
   padding: 0;
   box-shadow: none;
+  border: none;
   border-radius: 0;
 }
 .components-base-control__field .gutentools-icon-selector button.gutentools-icon-selector-button {
-  background: #007cba;
-  border: none;
-  height: 40px;
+  background: #fff;
+  border: 1px solid #ddd;
+  height: 36px;
   width: 100%;
-  color: #fff;
-  border-radius: 3px;
+  color: #1e1e1e;
+  border-radius: 2px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 0 10px;
   cursor: pointer;
+  box-shadow: none;
 }
 .components-base-control__field .gutentools-icon-selector button.gutentools-icon-selector-button i {
-  margin: 0 8px;
+  margin: 0;
+}
+.components-base-control__field .gutentools-icon-selector button.gutentools-icon-selector-button:hover {
+  border-color: #999;
+  background: #fafafa;
+}
+
+.popup-content .gutentools-icon-selector {
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
 }
 
 button.gutentools-image-uploader-trigger {

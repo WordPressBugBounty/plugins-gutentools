@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Image_Slider' ) ){
 
     class Gutentools_Image_Slider extends Gutentools_Block{

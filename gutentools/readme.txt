@@ -2,10 +2,10 @@
 Contributors: gutentools
 Tags: Gutenberg, Block Editor, Gutenberg Templates
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.7
-Version: 1.1.7
+Stable tag: 1.1.8
+Version: 1.1.8
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -184,6 +184,10 @@ This plugin Supports all the Themes but the following themes are highly recommen
 - Fixing issues with page and post slider
 - Adding border options for FAQ
 
+= 1.1.8 =
+- Added new block Icon List
+- Updated admin notice issue
+
 
 == Upgrade Notice ==
 
@@ -244,3 +248,7 @@ This plugin Supports all the Themes but the following themes are highly recommen
 
 = 1.1.7 =
 - Fixed the minor issue
+
+= 1.1.8 =
+- Adde new block Icon List
+- Updated admin notice issue

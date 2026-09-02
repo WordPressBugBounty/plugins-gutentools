@@ -31,19 +31,19 @@
 			<h2 class="gutentools-blocks-heading"><?php echo esc_html__( 'Gutentools Blocks', 'gutentools' ); ?></h2>
 			<div class="gutentools-icon-box-wrapper">
 				<?php 
-				$blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
-				foreach ( $blocks as $block_name => $block_type ) {
-						if ( strpos( $block_name, 'gutentools/' ) === 0 && empty( $block_type->parent )) { 
-							$slug = isset( $block_type->render_callback[0]->slug ) ? $block_type->render_callback[0]->slug : $block_type->title;
-							$icon = Gutentools_Icons::get_instance()->get_icon( $slug );
+				$gutentools_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+				foreach ( $gutentools_blocks as $gutentools_block_name => $gutentools_block_type ) {
+						if ( strpos( $gutentools_block_name, 'gutentools/' ) === 0 && empty( $gutentools_block_type->parent )) { 
+							$gutentools_slug = isset( $gutentools_block_type->render_callback[0]->slug ) ? $gutentools_block_type->render_callback[0]->slug : $gutentools_block_type->title;
+							$gutentools_icon = Gutentools_Icons::get_instance()->get_icon( $gutentools_slug );
 
 							?>
 							<div class="gutentools-icon-box">
 								<div>
-									<figure><?php Gutentools_Helper::wp_kses_extended( $icon ) ?></figure>
-									<h2><?php echo esc_html( $block_type->title ) ?></h2>
-									<p><?php echo esc_html( $block_type->description ) ?></p>
-									<a target="_blank" href="https://gutentools.com/blocks/<?php echo esc_attr( $slug )  ?>"><?php echo esc_html__( 'View Details', 'gutentools' ); ?></a>
+									<figure><?php Gutentools_Helper::wp_kses_extended( $gutentools_icon ) ?></figure>
+									<h2><?php echo esc_html( $gutentools_block_type->title ) ?></h2>
+									<p><?php echo esc_html( $gutentools_block_type->description ) ?></p>
+									<a target="_blank" href="https://gutentools.com/blocks/<?php echo esc_attr( $gutentools_slug )  ?>"><?php echo esc_html__( 'View Details', 'gutentools' ); ?></a>
 								</div>					
 							</div>
 						<?php 

@@ -1,4 +1,5 @@
 <?php 
+if ( ! defined( 'ABSPATH' ) ) exit;
 if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 
 	class Gutentools_Post_Ticker extends Gutentools_Block{
@@ -145,7 +146,7 @@ if( !class_exists( 'Gutentools_Post_Ticker' ) ){
 
 					jQuery('#<?php echo esc_js( $block_id ); ?> .gutentools-ticker-content').AcmeTicker({
 					    type: '<?php echo esc_js( $type ); ?>',
-					    speed: <?php echo $speed; ?>,
+					    speed: <?php echo esc_js( $speed ); ?>,
 					    direction: '<?php echo esc_js( $direction ); ?>',
 					    controls: {
 					        prev: jQuery('#<?php echo esc_js($block_id); ?> .gutentools-post-ticker-prev'),

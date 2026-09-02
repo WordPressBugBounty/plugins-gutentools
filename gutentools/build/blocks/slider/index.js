@@ -13645,11 +13645,28 @@ const Repeater = props => {
   };
   const remove = i => e => {
     e.preventDefault();
-    if (window.confirm((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Are you sure, you want to delete?"))) {
+    if (window.confirm((0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Are you sure, you want to delete?", "gutentools"))) {
       const updatedPage = [...selectedPage];
       updatedPage.splice(i, 1);
       props.onChange(JSON.stringify(updatedPage));
     }
+  };
+  const duplicate = i => e => {
+    e.preventDefault();
+    const updatedPage = [...selectedPage];
+    const clone = JSON.parse(JSON.stringify(updatedPage[i]));
+    updatedPage.splice(i + 1, 0, clone);
+    props.onChange(JSON.stringify(updatedPage));
+  };
+  const move = (from, to) => e => {
+    e.preventDefault();
+    if (to < 0 || to >= selectedPage.length) {
+      return;
+    }
+    const updatedPage = [...selectedPage];
+    const [item] = updatedPage.splice(from, 1);
+    updatedPage.splice(to, 0, item);
+    props.onChange(JSON.stringify(updatedPage));
   };
   const handleChange = (index, key) => value => {
     const updatedPage = [...selectedPage];
@@ -13665,35 +13682,80 @@ const Repeater = props => {
     } = props;
     if ((0,_helpers__WEBPACK_IMPORTED_MODULE_3__.isUndefined)(limit) || limit > count) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-        isPrimary: true,
+        variant: "secondary",
         onClick: add,
         "data-count": count,
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-repeater-add`,
         children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Add New", "gutentools")
       });
     } else {
-      // You can customize the behavior when the limit is reached
       return null;
     }
   };
   if ((0,_helpers__WEBPACK_IMPORTED_MODULE_3__.isUndefined)(props.cb)) {
     return null;
   }
+  const wrapperClass = [`${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-repeater-wrapper`, props.className || ""].filter(Boolean).join(" ");
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-repeater-wrapper`,
+    className: wrapperClass,
     children: [selectedPage.map((p, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-item`,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-item-header`,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("span", {
+          className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-item-label`,
+          children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Item", "gutentools"), " ", i + 1]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-repeater-actions`,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            className: "move-up",
+            onClick: move(i, i - 1),
+            disabled: i === 0,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Move up", "gutentools"),
+            showTooltip: true,
+            size: "small",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dashicon, {
+              size: "14",
+              icon: "arrow-up-alt2"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            className: "move-down",
+            onClick: move(i, i + 1),
+            disabled: i === selectedPage.length - 1,
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Move down", "gutentools"),
+            showTooltip: true,
+            size: "small",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dashicon, {
+              size: "14",
+              icon: "arrow-down-alt2"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            className: "duplicate",
+            onClick: duplicate(i),
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Duplicate", "gutentools"),
+            showTooltip: true,
+            size: "small",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dashicon, {
+              size: "14",
+              icon: "admin-page"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+            className: "remove",
+            onClick: remove(i),
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Remove", "gutentools"),
+            showTooltip: true,
+            size: "small",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dashicon, {
+              size: "14",
+              icon: "trash"
+            })
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-repeater-selects`,
         children: props.cb({
           handleChange
         }, p, i)
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-        className: "remove",
-        onClick: remove(i),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Dashicon, {
-          size: "15",
-          icon: "trash"
-        })
       })]
     }, i)), addButton(selectedPage.length)]
   });
@@ -14764,6 +14826,18 @@ const svg = {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
         d: "M705 120 c-4 -7 -3 -16 3 -22 14 -14 47 -6 47 12 0 18 -40 26 -50 10z"
       })]
+    })
+  }),
+  iconList: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 24 24",
+    width: "24",
+    height: "24",
+    "aria-hidden": "true",
+    focusable: "false",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+      fill: "#2A43FF",
+      d: "M4 6.5A1.5 1.5 0 1 1 4 9.5 1.5 1.5 0 0 1 4 6.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 11A1.5 1.5 0 1 1 4 14 1.5 1.5 0 0 1 4 11zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 15.5A1.5 1.5 0 1 1 4 18.5 1.5 1.5 0 0 1 4 15.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5z"
     })
   })
 };
