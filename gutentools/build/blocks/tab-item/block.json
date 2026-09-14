@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gutentools/tab-item",
+  "version": "1.0.0",
+  "title": "Tab Item",
+  "category": "gutentools",
+  "description": "A single tab item for use inside the Tabs block.",
+  "keywords": [
+    "tab",
+    "item"
+  ],
+  "parent": [
+    "gutentools/tabs"
+  ],
+  "example": {},
+  "supports": {
+    "reusable": false,
+    "html": false
+  },
+  "attributes": {
+    "tabTitle": {
+      "type": "string",
+      "default": "Tab"
+    },
+    "tabId": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "gutentools",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

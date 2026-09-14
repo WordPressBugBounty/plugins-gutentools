@@ -184,9 +184,13 @@ if( !class_exists( 'Gutentools_Helper' ) ):
 		            'title' => true,
 		        ),
 		        'path'  => array(
-		            'd'    => true,
-		            'fill' => true,
-		            'transform' => true,
+		            'd'              => true,
+		            'fill'           => true,
+		            'transform'      => true,
+								'stroke'         => true,
+								'stroke-width'   => true,
+								'stroke-linecap' => true,
+								'stroke-linejoin'=> true,
 		        ),
 		        'image' => array(
 		            'x'          => true,
@@ -195,6 +199,13 @@ if( !class_exists( 'Gutentools_Helper' ) ):
 		            'height'     => true,
 		            'xlink:href' => true,
 		        ),
+						'circle' => array(
+								'cx'    => true,
+								'cy'    => true,
+								'r'     => true,
+								'fill'  => true,
+								'stroke'=> true,
+						),
 		    );
 			$allowed_tags = array_merge( $kses_defaults, $svg_args );
 

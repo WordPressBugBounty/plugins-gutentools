@@ -6564,716 +6564,44 @@ module.exports = union;
 
 /***/ }),
 
-/***/ "./node_modules/reactjs-popup/dist/reactjs-popup.esm.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/reactjs-popup/dist/reactjs-popup.esm.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Popup: () => (/* binding */ Popup),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-var useOnEscape = function useOnEscape(handler, active) {
-  if (active === void 0) {
-    active = true;
-  }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!active) return;
-
-    var listener = function listener(event) {
-      // check if key is an Escape
-      if (event.key === 'Escape') handler(event);
-    };
-
-    document.addEventListener('keyup', listener);
-    return function () {
-      if (!active) return;
-      document.removeEventListener('keyup', listener);
-    };
-  }, [handler, active]);
-};
-var useRepositionOnResize = function useRepositionOnResize(handler, active) {
-  if (active === void 0) {
-    active = true;
-  }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!active) return;
-
-    var listener = function listener() {
-      handler();
-    };
-
-    window.addEventListener('resize', listener);
-    return function () {
-      if (!active) return;
-      window.removeEventListener('resize', listener);
-    };
-  }, [handler, active]);
-};
-var useOnClickOutside = function useOnClickOutside(ref, handler, active) {
-  if (active === void 0) {
-    active = true;
-  }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!active) return;
-
-    var listener = function listener(event) {
-      // Do nothing if clicking ref's element or descendent elements
-      var refs = Array.isArray(ref) ? ref : [ref];
-      var contains = false;
-      refs.forEach(function (r) {
-        if (!r.current || r.current.contains(event.target)) {
-          contains = true;
-          return;
-        }
-      });
-      event.stopPropagation();
-      if (!contains) handler(event);
-    };
-
-    document.addEventListener('mousedown', listener);
-    document.addEventListener('touchstart', listener);
-    return function () {
-      if (!active) return;
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
-    };
-  }, [ref, handler, active]);
-}; // Make sure that user is not able TAB out of the Modal content on Open
-
-var useTabbing = function useTabbing(contentRef, active) {
-  if (active === void 0) {
-    active = true;
-  }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (!active) return;
-
-    var listener = function listener(event) {
-      // check if key is an Tab
-      if (event.keyCode === 9) {
-        var _contentRef$current;
-
-        var els = contentRef === null || contentRef === void 0 ? void 0 : (_contentRef$current = contentRef.current) === null || _contentRef$current === void 0 ? void 0 : _contentRef$current.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
-        var focusableEls = Array.prototype.slice.call(els);
-
-        if (focusableEls.length === 1) {
-          event.preventDefault();
-          return;
-        }
-
-        var firstFocusableEl = focusableEls[0];
-        var lastFocusableEl = focusableEls[focusableEls.length - 1];
-
-        if (event.shiftKey && document.activeElement === firstFocusableEl) {
-          event.preventDefault();
-          lastFocusableEl.focus();
-        } else if (document.activeElement === lastFocusableEl) {
-          event.preventDefault();
-          firstFocusableEl.focus();
-        }
-      }
-    };
-
-    document.addEventListener('keydown', listener);
-    return function () {
-      if (!active) return;
-      document.removeEventListener('keydown', listener);
-    };
-  }, [contentRef, active]);
-};
-var useIsomorphicLayoutEffect = typeof window !== 'undefined' ? react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_0__.useEffect;
-
-var Style = {
-  popupContent: {
-    tooltip: {
-      position: 'absolute',
-      zIndex: 999
-    },
-    modal: {
-      position: 'relative',
-      margin: 'auto'
-    }
-  },
-  popupArrow: {
-    height: '8px',
-    width: '16px',
-    position: 'absolute',
-    background: 'transparent',
-    color: '#FFF',
-    zIndex: -1
-  },
-  overlay: {
-    tooltip: {
-      position: 'fixed',
-      top: '0',
-      bottom: '0',
-      left: '0',
-      right: '0',
-      zIndex: 999
-    },
-    modal: {
-      position: 'fixed',
-      top: '0',
-      bottom: '0',
-      left: '0',
-      right: '0',
-      display: 'flex',
-      zIndex: 999
-    }
-  }
-};
-
-var POSITION_TYPES = ['top left', 'top center', 'top right', 'right top', 'right center', 'right bottom', 'bottom left', 'bottom center', 'bottom right', 'left top', 'left center', 'left bottom'];
-
-var getCoordinatesForPosition = function getCoordinatesForPosition(triggerBounding, ContentBounding, position, //PopupPosition | PopupPosition[],
-arrow, _ref) {
-  var offsetX = _ref.offsetX,
-      offsetY = _ref.offsetY;
-  var margin = arrow ? 8 : 0;
-  var args = position.split(' '); // the step N 1 : center the popup content => ok
-
-  var CenterTop = triggerBounding.top + triggerBounding.height / 2;
-  var CenterLeft = triggerBounding.left + triggerBounding.width / 2;
-  var height = ContentBounding.height,
-      width = ContentBounding.width;
-  var top = CenterTop - height / 2;
-  var left = CenterLeft - width / 2;
-  var transform = '';
-  var arrowTop = '0%';
-  var arrowLeft = '0%'; // the  step N 2 : => ok
-
-  switch (args[0]) {
-    case 'top':
-      top -= height / 2 + triggerBounding.height / 2 + margin;
-      transform = "rotate(180deg)  translateX(50%)";
-      arrowTop = '100%';
-      arrowLeft = '50%';
-      break;
-
-    case 'bottom':
-      top += height / 2 + triggerBounding.height / 2 + margin;
-      transform = "rotate(0deg) translateY(-100%) translateX(-50%)";
-      arrowLeft = '50%';
-      break;
-
-    case 'left':
-      left -= width / 2 + triggerBounding.width / 2 + margin;
-      transform = " rotate(90deg)  translateY(50%) translateX(-25%)";
-      arrowLeft = '100%';
-      arrowTop = '50%';
-      break;
-
-    case 'right':
-      left += width / 2 + triggerBounding.width / 2 + margin;
-      transform = "rotate(-90deg)  translateY(-150%) translateX(25%)";
-      arrowTop = '50%';
-      break;
-  }
-
-  switch (args[1]) {
-    case 'top':
-      top = triggerBounding.top;
-      arrowTop = triggerBounding.height / 2 + "px";
-      break;
-
-    case 'bottom':
-      top = triggerBounding.top - height + triggerBounding.height;
-      arrowTop = height - triggerBounding.height / 2 + "px";
-      break;
-
-    case 'left':
-      left = triggerBounding.left;
-      arrowLeft = triggerBounding.width / 2 + "px";
-      break;
-
-    case 'right':
-      left = triggerBounding.left - width + triggerBounding.width;
-      arrowLeft = width - triggerBounding.width / 2 + "px";
-      break;
-  }
-
-  top = args[0] === 'top' ? top - offsetY : top + offsetY;
-  left = args[0] === 'left' ? left - offsetX : left + offsetX;
-  return {
-    top: top,
-    left: left,
-    transform: transform,
-    arrowLeft: arrowLeft,
-    arrowTop: arrowTop
-  };
-};
-
-var getTooltipBoundary = function getTooltipBoundary(keepTooltipInside) {
-  // add viewport
-  var boundingBox = {
-    top: 0,
-    left: 0,
-
-    /* eslint-disable-next-line no-undef */
-    width: window.innerWidth,
-
-    /* eslint-disable-next-line no-undef */
-    height: window.innerHeight
-  };
-
-  if (typeof keepTooltipInside === 'string') {
-    /* eslint-disable-next-line no-undef */
-    var selector = document.querySelector(keepTooltipInside);
-
-    if (true) {
-      if (selector === null) throw new Error(keepTooltipInside + " selector does not exist : keepTooltipInside must be a valid html selector 'class' or 'Id'  or a boolean value");
-    }
-
-    if (selector !== null) boundingBox = selector.getBoundingClientRect();
-  }
-
-  return boundingBox;
-};
-
-var calculatePosition = function calculatePosition(triggerBounding, ContentBounding, position, arrow, _ref2, keepTooltipInside) {
-  var offsetX = _ref2.offsetX,
-      offsetY = _ref2.offsetY;
-  var bestCoords = {
-    arrowLeft: '0%',
-    arrowTop: '0%',
-    left: 0,
-    top: 0,
-    transform: 'rotate(135deg)'
-  };
-  var i = 0;
-  var wrapperBox = getTooltipBoundary(keepTooltipInside);
-  var positions = Array.isArray(position) ? position : [position]; // keepTooltipInside would be activated if the  keepTooltipInside exist or the position is Array
-
-  if (keepTooltipInside || Array.isArray(position)) positions = [].concat(positions, POSITION_TYPES); // add viewPort for WarpperBox
-  // wrapperBox.top = wrapperBox.top + window.scrollY;
-  // wrapperBox.left = wrapperBox.left + window.scrollX;
-
-  while (i < positions.length) {
-    bestCoords = getCoordinatesForPosition(triggerBounding, ContentBounding, positions[i], arrow, {
-      offsetX: offsetX,
-      offsetY: offsetY
-    });
-    var contentBox = {
-      top: bestCoords.top,
-      left: bestCoords.left,
-      width: ContentBounding.width,
-      height: ContentBounding.height
-    };
-
-    if (contentBox.top <= wrapperBox.top || contentBox.left <= wrapperBox.left || contentBox.top + contentBox.height >= wrapperBox.top + wrapperBox.height || contentBox.left + contentBox.width >= wrapperBox.left + wrapperBox.width) {
-      i++;
-    } else {
-      break;
-    }
-  }
-
-  return bestCoords;
-};
-
-var popupIdCounter = 0;
-
-var getRootPopup = function getRootPopup() {
-  var PopupRoot = document.getElementById('popup-root');
-
-  if (PopupRoot === null) {
-    PopupRoot = document.createElement('div');
-    PopupRoot.setAttribute('id', 'popup-root');
-    document.body.appendChild(PopupRoot);
-  }
-
-  return PopupRoot;
-};
-
-var Popup = /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(function (_ref, ref) {
-  var _ref$trigger = _ref.trigger,
-      trigger = _ref$trigger === void 0 ? null : _ref$trigger,
-      _ref$onOpen = _ref.onOpen,
-      onOpen = _ref$onOpen === void 0 ? function () {} : _ref$onOpen,
-      _ref$onClose = _ref.onClose,
-      onClose = _ref$onClose === void 0 ? function () {} : _ref$onClose,
-      _ref$defaultOpen = _ref.defaultOpen,
-      defaultOpen = _ref$defaultOpen === void 0 ? false : _ref$defaultOpen,
-      _ref$open = _ref.open,
-      open = _ref$open === void 0 ? undefined : _ref$open,
-      _ref$disabled = _ref.disabled,
-      disabled = _ref$disabled === void 0 ? false : _ref$disabled,
-      _ref$nested = _ref.nested,
-      nested = _ref$nested === void 0 ? false : _ref$nested,
-      _ref$closeOnDocumentC = _ref.closeOnDocumentClick,
-      closeOnDocumentClick = _ref$closeOnDocumentC === void 0 ? true : _ref$closeOnDocumentC,
-      _ref$repositionOnResi = _ref.repositionOnResize,
-      repositionOnResize = _ref$repositionOnResi === void 0 ? true : _ref$repositionOnResi,
-      _ref$closeOnEscape = _ref.closeOnEscape,
-      closeOnEscape = _ref$closeOnEscape === void 0 ? true : _ref$closeOnEscape,
-      _ref$on = _ref.on,
-      on = _ref$on === void 0 ? ['click'] : _ref$on,
-      _ref$contentStyle = _ref.contentStyle,
-      contentStyle = _ref$contentStyle === void 0 ? {} : _ref$contentStyle,
-      _ref$arrowStyle = _ref.arrowStyle,
-      arrowStyle = _ref$arrowStyle === void 0 ? {} : _ref$arrowStyle,
-      _ref$overlayStyle = _ref.overlayStyle,
-      overlayStyle = _ref$overlayStyle === void 0 ? {} : _ref$overlayStyle,
-      _ref$className = _ref.className,
-      className = _ref$className === void 0 ? '' : _ref$className,
-      _ref$position = _ref.position,
-      position = _ref$position === void 0 ? 'bottom center' : _ref$position,
-      _ref$modal = _ref.modal,
-      modal = _ref$modal === void 0 ? false : _ref$modal,
-      _ref$lockScroll = _ref.lockScroll,
-      lockScroll = _ref$lockScroll === void 0 ? false : _ref$lockScroll,
-      _ref$arrow = _ref.arrow,
-      arrow = _ref$arrow === void 0 ? true : _ref$arrow,
-      _ref$offsetX = _ref.offsetX,
-      offsetX = _ref$offsetX === void 0 ? 0 : _ref$offsetX,
-      _ref$offsetY = _ref.offsetY,
-      offsetY = _ref$offsetY === void 0 ? 0 : _ref$offsetY,
-      _ref$mouseEnterDelay = _ref.mouseEnterDelay,
-      mouseEnterDelay = _ref$mouseEnterDelay === void 0 ? 100 : _ref$mouseEnterDelay,
-      _ref$mouseLeaveDelay = _ref.mouseLeaveDelay,
-      mouseLeaveDelay = _ref$mouseLeaveDelay === void 0 ? 100 : _ref$mouseLeaveDelay,
-      _ref$keepTooltipInsid = _ref.keepTooltipInside,
-      keepTooltipInside = _ref$keepTooltipInsid === void 0 ? false : _ref$keepTooltipInsid,
-      children = _ref.children;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(open || defaultOpen),
-      isOpen = _useState[0],
-      setIsOpen = _useState[1];
-
-  var triggerRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var contentRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var arrowRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var focusedElBeforeOpen = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var popupId = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)("popup-" + ++popupIdCounter);
-  var isModal = modal ? true : !trigger;
-  var timeOut = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(0);
-  useIsomorphicLayoutEffect(function () {
-    if (isOpen) {
-      focusedElBeforeOpen.current = document.activeElement;
-      setPosition();
-      focusContentOnOpen(); // for accessibility
-
-      lockScrolll();
-    } else {
-      resetScroll();
-    }
-
-    return function () {
-      clearTimeout(timeOut.current);
-    };
-  }, [isOpen]); // for uncontrolled popup we need to sync isOpen with open prop
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (typeof open === 'boolean') {
-      if (open) openPopup();else closePopup();
-    }
-  }, [open, disabled]);
-
-  var openPopup = function openPopup(event) {
-    if (isOpen || disabled) return;
-    setIsOpen(true);
-    setTimeout(function () {
-      return onOpen(event);
-    }, 0);
-  };
-
-  var closePopup = function closePopup(event) {
-    var _focusedElBeforeOpen$;
-
-    if (!isOpen || disabled) return;
-    setIsOpen(false);
-    if (isModal) (_focusedElBeforeOpen$ = focusedElBeforeOpen.current) === null || _focusedElBeforeOpen$ === void 0 ? void 0 : _focusedElBeforeOpen$.focus();
-    setTimeout(function () {
-      return onClose(event);
-    }, 0);
-  };
-
-  var togglePopup = function togglePopup(event) {
-    event === null || event === void 0 ? void 0 : event.stopPropagation();
-    if (!isOpen) openPopup(event);else closePopup(event);
-  };
-
-  var onMouseEnter = function onMouseEnter(event) {
-    clearTimeout(timeOut.current);
-    timeOut.current = setTimeout(function () {
-      return openPopup(event);
-    }, mouseEnterDelay);
-  };
-
-  var onContextMenu = function onContextMenu(event) {
-    event === null || event === void 0 ? void 0 : event.preventDefault();
-    togglePopup();
-  };
-
-  var onMouseLeave = function onMouseLeave(event) {
-    clearTimeout(timeOut.current);
-    timeOut.current = setTimeout(function () {
-      return closePopup(event);
-    }, mouseLeaveDelay);
-  };
-
-  var lockScrolll = function lockScrolll() {
-    if (isModal && lockScroll) document.getElementsByTagName('body')[0].style.overflow = 'hidden'; // migrate to document.body
-  };
-
-  var resetScroll = function resetScroll() {
-    if (isModal && lockScroll) document.getElementsByTagName('body')[0].style.overflow = 'auto';
-  };
-
-  var focusContentOnOpen = function focusContentOnOpen() {
-    var _contentRef$current;
-
-    var focusableEls = contentRef === null || contentRef === void 0 ? void 0 : (_contentRef$current = contentRef.current) === null || _contentRef$current === void 0 ? void 0 : _contentRef$current.querySelectorAll('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
-    var firstEl = Array.prototype.slice.call(focusableEls)[0];
-    firstEl === null || firstEl === void 0 ? void 0 : firstEl.focus();
-  };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useImperativeHandle)(ref, function () {
-    return {
-      open: function open() {
-        openPopup();
-      },
-      close: function close() {
-        closePopup();
-      },
-      toggle: function toggle() {
-        togglePopup();
-      }
-    };
-  }); // set Position
-
-  var setPosition = function setPosition() {
-    if (isModal || !isOpen) return;
-    if (!(triggerRef === null || triggerRef === void 0 ? void 0 : triggerRef.current) || !(triggerRef === null || triggerRef === void 0 ? void 0 : triggerRef.current) || !(contentRef === null || contentRef === void 0 ? void 0 : contentRef.current)) return; /// show error as one of ref is undefined
-
-    var trigger = triggerRef.current.getBoundingClientRect();
-    var content = contentRef.current.getBoundingClientRect();
-    var cords = calculatePosition(trigger, content, position, arrow, {
-      offsetX: offsetX,
-      offsetY: offsetY
-    }, keepTooltipInside);
-    contentRef.current.style.top = cords.top + window.scrollY + "px";
-    contentRef.current.style.left = cords.left + window.scrollX + "px";
-
-    if (arrow && !!arrowRef.current) {
-      var _arrowStyle$top, _arrowStyle$left;
-
-      arrowRef.current.style.transform = cords.transform;
-      arrowRef.current.style.setProperty('-ms-transform', cords.transform);
-      arrowRef.current.style.setProperty('-webkit-transform', cords.transform);
-      arrowRef.current.style.top = ((_arrowStyle$top = arrowStyle.top) === null || _arrowStyle$top === void 0 ? void 0 : _arrowStyle$top.toString()) || cords.arrowTop;
-      arrowRef.current.style.left = ((_arrowStyle$left = arrowStyle.left) === null || _arrowStyle$left === void 0 ? void 0 : _arrowStyle$left.toString()) || cords.arrowLeft;
-    }
-  }; // hooks
-
-
-  useOnEscape(closePopup, closeOnEscape); // can be optimized if we disabled for hover
-
-  useTabbing(contentRef, isOpen && isModal);
-  useRepositionOnResize(setPosition, repositionOnResize);
-  useOnClickOutside(!!trigger ? [contentRef, triggerRef] : [contentRef], closePopup, closeOnDocumentClick && !nested); // we need to add a ne
-  // render the trigger element and add events
-
-  var renderTrigger = function renderTrigger() {
-    var triggerProps = {
-      key: 'T',
-      ref: triggerRef,
-      'aria-describedby': popupId.current
-    };
-    var onAsArray = Array.isArray(on) ? on : [on];
-
-    for (var i = 0, len = onAsArray.length; i < len; i++) {
-      switch (onAsArray[i]) {
-        case 'click':
-          triggerProps.onClick = togglePopup;
-          break;
-
-        case 'right-click':
-          triggerProps.onContextMenu = onContextMenu;
-          break;
-
-        case 'hover':
-          triggerProps.onMouseEnter = onMouseEnter;
-          triggerProps.onMouseLeave = onMouseLeave;
-          break;
-
-        case 'focus':
-          triggerProps.onFocus = onMouseEnter;
-          triggerProps.onBlur = onMouseLeave;
-          break;
-      }
-    }
-
-    if (typeof trigger === 'function') {
-      var comp = trigger(isOpen);
-      return !!trigger && react__WEBPACK_IMPORTED_MODULE_0___default().cloneElement(comp, triggerProps);
-    }
-
-    return !!trigger && react__WEBPACK_IMPORTED_MODULE_0___default().cloneElement(trigger, triggerProps);
-  };
-
-  var addWarperAction = function addWarperAction() {
-    var popupContentStyle = isModal ? Style.popupContent.modal : Style.popupContent.tooltip;
-    var childrenElementProps = {
-      className: "popup-content " + (className !== '' ? className.split(' ').map(function (c) {
-        return c + "-content";
-      }).join(' ') : ''),
-      style: _extends({}, popupContentStyle, contentStyle, {
-        pointerEvents: 'auto'
-      }),
-      ref: contentRef,
-      onClick: function onClick(e) {
-        e.stopPropagation();
-      }
-    };
-
-    if (!modal && on.indexOf('hover') >= 0) {
-      childrenElementProps.onMouseEnter = onMouseEnter;
-      childrenElementProps.onMouseLeave = onMouseLeave;
-    }
-
-    return childrenElementProps;
-  };
-
-  var renderContent = function renderContent() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", Object.assign({}, addWarperAction(), {
-      key: "C",
-      role: isModal ? 'dialog' : 'tooltip',
-      id: popupId.current
-    }), arrow && !isModal && react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-      ref: arrowRef,
-      style: Style.popupArrow
-    }, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
-      "data-testid": "arrow",
-      className: "popup-arrow " + (className !== '' ? className.split(' ').map(function (c) {
-        return c + "-arrow";
-      }).join(' ') : ''),
-      viewBox: "0 0 32 16",
-      style: _extends({
-        position: 'absolute'
-      }, arrowStyle)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
-      d: "M16 0l16 16H0z",
-      fill: "currentcolor"
-    }))), children && typeof children === 'function' ? children(closePopup, isOpen) : children);
-  };
-
-  var overlay = !(on.indexOf('hover') >= 0);
-  var ovStyle = isModal ? Style.overlay.modal : Style.overlay.tooltip;
-  var content = [overlay && react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    key: "O",
-    "data-testid": "overlay",
-    "data-popup": isModal ? 'modal' : 'tooltip',
-    className: "popup-overlay " + (className !== '' ? className.split(' ').map(function (c) {
-      return c + "-overlay";
-    }).join(' ') : ''),
-    style: _extends({}, ovStyle, overlayStyle, {
-      pointerEvents: closeOnDocumentClick && nested || isModal ? 'auto' : 'none'
-    }),
-    onClick: closeOnDocumentClick && nested ? closePopup : undefined,
-    tabIndex: -1
-  }, isModal && renderContent()), !isModal && renderContent()];
-  return react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, renderTrigger(), isOpen && react_dom__WEBPACK_IMPORTED_MODULE_1___default().createPortal(content, getRootPopup()));
-});
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popup);
-
-//# sourceMappingURL=reactjs-popup.esm.js.map
-
-
-/***/ }),
-
-/***/ "./src/blocks/faq-item/depricated/attributes.js":
-/*!******************************************************!*\
-  !*** ./src/blocks/faq-item/depricated/attributes.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   attributes: () => (/* binding */ attributes)
-/* harmony export */ });
-const attributes = {
-  title: {
-    type: "string"
-  },
-  initialOpen: {
-    type: "boolean",
-    default: false
-  },
-  parent: {
-    type: "object"
-  }
-};
-
-/***/ }),
-
-/***/ "./src/blocks/faq/block.json":
-/*!***********************************!*\
-  !*** ./src/blocks/faq/block.json ***!
-  \***********************************/
+/***/ "./src/blocks/tabs/block.json":
+/*!************************************!*\
+  !*** ./src/blocks/tabs/block.json ***!
+  \************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gutentools/faq","version":"1.0.0","title":"FAQ","category":"gutentools","description":"Easily add interactive FAQs to your pages. Help users find quick answers with an organized, collapsible layout.","keywords":["faq"],"example":{},"supports":{"html":false},"attributes":{"block_id":{"type":"string"},"bgColor":{"type":"string","default":"#ffffff"},"iconBgColor":{"type":"string","default":"#ffffff"},"itemBgColor":{"type":"string","default":"#cfcfcf"},"iconColor":{"type":"string","default":"#000"},"titleColor":{"type":"string","default":"#000"},"faqPadding":{"type":"object","default":{"activeUnit":"px","isLinkActive":true,"properties":["top","right","bottom","left"],"responsiveViews":["desktop","tablet","mobile"],"units":["px","rem"],"values":{"desktop":[15,15,15,15],"tablet":[0,0,0,0],"mobile":[0,0,0,0]}}},"faqMargin":{"type":"object","default":{"activeUnit":"px","isLinkActive":true,"properties":["top","right","bottom","left"],"responsiveViews":["desktop","tablet","mobile"],"units":["px","rem"],"values":{"desktop":[15,0,0,0],"tablet":[15,0,0,0],"mobile":[15,0,0,0]}}},"faqItemPadding":{"type":"object","default":{"activeUnit":"px","isLinkActive":true,"properties":["top","right","bottom","left"],"responsiveViews":["desktop","tablet","mobile"],"units":["px","rem"],"values":{"desktop":[15,15,15,15],"tablet":[0,0,0,0],"mobile":[0,0,0,0]}}},"faqItemMargin":{"type":"object","default":{"activeUnit":"px","isLinkActive":true,"properties":["top","right","bottom","left"],"responsiveViews":["desktop","tablet","mobile"],"units":["px","rem"],"values":{"desktop":[15,0,0,0],"tablet":[15,0,0,0],"mobile":[15,0,0,0]}}},"openIcon":{"type":"object","default":{"icon":"fa-chevron-up"}},"closeIcon":{"type":"object","default":{"icon":"fa-chevron-down"}},"iconPosition":{"type":"string","default":"right"},"titleTypo":{"type":"object","default":{"fontFamily":"","fontSize":{"units":["px","em","rem"],"activeUnit":"px","values":{"desktop":18,"tablet":18,"mobile":18}},"fontWeight":600,"lineHeight":{"activeUnit":"","units":[""],"values":{"desktop":1.6,"tablet":1.6,"mobile":1.6}},"letterSpacing":{"units":["px","em","rem"],"activeUnit":"px","values":{"desktop":0,"tablet":0,"mobile":0}},"fontStyle":""}},"iconRadius":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","em"],"range":{"min":0,"max":100},"values":{"desktop":5,"tablet":5,"mobile":5}}},"itemRadius":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","em"],"range":{"min":0,"max":100},"values":{"desktop":5,"tablet":5,"mobile":5}}},"iconSize":{"type":"object","default":{"activeUnit":"px","isLinkActive":true,"properties":["height","width"],"responsiveViews":["desktop","tablet","mobile"],"units":["px","rem"],"values":{"desktop":[40,40],"tablet":[30,30],"mobile":[30,30]}}},"borders":{"type":"object","default":{"color":"","style":"","width":"0"}}},"providesContext":{"gutentools/openIcon":"openIcon","gutentools/closeIcon":"closeIcon","gutentools/iconColor":"iconColor","gutentools/iconBgColor":"iconBgColor","gutentools/iconPosition":"iconPosition","gutentools/titleTypo":"titleTypo","gutentools/faqItemMargin":"faqItemMargin","gutentools/faqItemPadding":"faqItemPadding","gutentools/iconRadius":"iconRadius","gutentools/titleColor":"titleColor","gutentools/iconSize":"iconSize","gutentools/itemRadius":"itemRadius","gutentools/itemBgColor":"itemBgColor","gutentools/borders":"borders"},"textdomain":"gutentools","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"gutentools/tabs","version":"1.0","title":"Tabs","description":"A tabs block where each tab supports full inner blocks.","category":"gutentools","attributes":{"block_id":{"type":"string"},"tabAlignment":{"type":"string","default":"left"},"tabBg":{"type":"string","default":"#f0f0f0"},"tabColor":{"type":"string","default":"#555555"},"tabActiveBg":{"type":"string","default":"#0078FE"},"tabActiveColor":{"type":"string","default":"#ffffff"},"tabHoverBg":{"type":"string","default":""},"tabHoverColor":{"type":"string","default":""},"tabTypo":{"type":"object","default":{"fontSize":{"activeUnit":"px","values":{"desktop":14,"tablet":14,"mobile":14}},"fontFamily":"Default","fontWeight":"600","textTransform":"none","lineHeight":{"activeUnit":"em","values":{"desktop":1.4,"tablet":1.4,"mobile":1.4}}}},"tabPadding":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","%"],"values":{"desktop":[10,20,10,20],"tablet":[8,16,8,16],"mobile":[8,14,8,14]}}},"tabBorderRadius":{"type":"number","default":0},"tabGap":{"type":"number","default":4},"tabContentGap":{"type":"number","default":0},"contentBg":{"type":"string","default":"#ffffff"},"contentPadding":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","%"],"values":{"desktop":[24,24,24,24],"tablet":[20,20,20,20],"mobile":[16,16,16,16]}}},"contentBorderRadius":{"type":"number","default":0},"contentBorderStyle":{"type":"string","default":"solid"},"contentBorderWidth":{"type":"number","default":1},"contentBorderColor":{"type":"string","default":"#dddddd"},"wrapperBgColor":{"type":"string","default":""},"wrapperPadding":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","%"],"values":{"desktop":[0,0,0,0],"tablet":[0,0,0,0],"mobile":[0,0,0,0]}}},"wrapperMargin":{"type":"object","default":{"activeUnit":"px","responsiveViews":["desktop","tablet","mobile"],"units":["px","%"],"values":{"desktop":[0,0,0,0],"tablet":[0,0,0,0],"mobile":[0,0,0,0]}}}},"textdomain":"gutentools","editorScript":"file:./index.js","viewScript":"file:./frontend.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }),
 
-/***/ "./src/blocks/faq/components/edit.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/faq/components/edit.js ***!
-  \*******************************************/
+/***/ "./src/blocks/tabs/components/edit.js":
+/*!********************************************!*\
+  !*** ./src/blocks/tabs/components/edit.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/editor.scss */ "./src/blocks/tabs/styles/editor.scss");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
-/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inspector */ "./src/blocks/faq/components/inspector.js");
-/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles/editor.scss */ "./src/blocks/faq/styles/editor.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _inspector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./inspector */ "./src/blocks/tabs/components/inspector.js");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -7282,57 +6610,249 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ALLOWED_BLOCKS = ["gutentools/faq-item"];
-const BLOCK_TEMPLATE = [["gutentools/faq-item", {
-  title: "What is Gutentools?",
-  initialOpen: true
-}, [["core/paragraph", {
-  content: "Gutentools is a collection of custom Gutenberg blocks."
-}]]]];
-function Edit(props) {
+
+
+const PlusIcon = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("svg", {
+  width: "16",
+  height: "16",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("path", {
+    d: "M10 3.5v13M3.5 10h13",
+    stroke: "currentColor",
+    strokeWidth: "2.5",
+    strokeLinecap: "round"
+  })
+});
+const Edit = props => {
   const {
+    setAttributes,
+    clientId,
     attributes: {
-      bgColor,
-      faqMargin,
-      faqPadding
-    },
-    setAttributes
+      block_id,
+      tabAlignment,
+      tabBg,
+      tabColor,
+      tabActiveBg,
+      tabActiveColor,
+      tabHoverBg,
+      tabHoverColor,
+      tabTypo,
+      tabPadding,
+      tabBorderRadius,
+      tabGap,
+      tabContentGap,
+      contentBg,
+      contentPadding,
+      contentBorderRadius,
+      contentBorderStyle,
+      contentBorderWidth,
+      contentBorderColor,
+      wrapperBgColor,
+      wrapperPadding,
+      wrapperMargin,
+      wrapperBorderRadius
+    }
   } = props;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-faq`
+  const [activeTabIndex, setActiveTabIndex] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(0);
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useBlockProps)({
+    className: (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs")
   });
-  const faqStyle = {
-    backgroundColor: bgColor,
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getDimensionStyle)("padding", faqPadding),
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getDimensionStyle)("margin", faqMargin)
-  };
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    setAttributes({
-      block_id: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-faq-${blockProps.id}`
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    const expectedBlockId = `${_constants__WEBPACK_IMPORTED_MODULE_3__.prefix}-tabs-${blockProps.id}`;
+    if (block_id !== expectedBlockId) {
+      setAttributes({
+        block_id: expectedBlockId
+      });
+    }
+  }, [blockProps.id]);
+  const innerBlocks = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_7__.useSelect)(select => select("core/block-editor").getBlocks(clientId), [clientId]);
+
+  // Clamp active index when a tab is removed.
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
+    if (innerBlocks.length > 0 && activeTabIndex >= innerBlocks.length) {
+      setActiveTabIndex(innerBlocks.length - 1);
+    }
+  }, [innerBlocks.length]);
+  const addTab = () => {
+    const newTabIndex = innerBlocks.length;
+    const newBlock = wp.blocks.createBlock("gutentools/tab-item", {
+      tabTitle: `Tab ${newTabIndex + 1}`
     });
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      ...props
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      ...blockProps,
-      style: faqStyle,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InnerBlocks, {
-        defaultBlock: BLOCK_TEMPLATE,
-        allowedBlocks: ALLOWED_BLOCKS,
-        template: BLOCK_TEMPLATE,
-        directInsert: true
+    wp.data.dispatch("core/block-editor").insertBlocks(newBlock, undefined, clientId);
+    setActiveTabIndex(newTabIndex);
+  };
+  const getDimVal = attr => {
+    if (!attr) {
+      return "";
+    }
+    const device = (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getPreviewDevice)();
+    const vals = attr.values?.[device] || attr.values?.desktop || [];
+    const unit = attr.activeUnit || "px";
+    return vals.map(v => v + unit).join(" ");
+  };
+  const getTypoStyle = typo => {
+    if (!typo) {
+      return {};
+    }
+    const device = (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getPreviewDevice)();
+    return {
+      fontFamily: typo.fontFamily !== "Default" ? typo.fontFamily : "inherit",
+      fontWeight: typo.fontWeight,
+      textTransform: typo.textTransform,
+      fontSize: (typo.fontSize?.values?.[device] || typo.fontSize?.values?.desktop) + (typo.fontSize?.activeUnit || "px"),
+      lineHeight: (typo.lineHeight?.values?.[device] || typo.lineHeight?.values?.desktop) + (typo.lineHeight?.activeUnit || "em")
+    };
+  };
+  const tabTypoStyle = Object.entries(getTypoStyle(tabTypo)).map(([k, v]) => `${k.replace(/([A-Z])/g, "-$1").toLowerCase()}: ${v};`).join(" ");
+  const hoverStyles = tabHoverBg || tabHoverColor ? `
+				#${block_id} .${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav-btn")}:hover {
+
+					${tabHoverBg ? `background: ${tabHoverBg};` : ""}
+
+					${tabHoverColor ? `color: ${tabHoverColor};` : ""}
+				}
+			` : "";
+
+  // Hide inactive tab block wrappers using Gutenberg's data-block attribute.
+  const tabVisibilityStyles = block_id && innerBlocks.length > 0 ? innerBlocks.map((block, i) => `#${block_id} [data-block="${block.clientId}"] {
+								display: ${i === activeTabIndex ? "block" : "none"} !important;
+							}`).join("\n") : "";
+  const alignMap = {
+    left: "flex-start",
+    center: "center",
+    right: "flex-end"
+  };
+  const editorStyles = `
+		#${block_id} .${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav")} {
+
+			gap: ${tabGap}px;
+
+			justify-content:
+				${alignMap[tabAlignment] || "flex-start"};
+		}
+
+		#${block_id} .${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav-btn")} {
+
+			background: ${tabBg};
+
+			color: ${tabColor};
+
+			padding: ${getDimVal(tabPadding)};
+
+			border-radius:
+				${tabBorderRadius}px;
+
+			${tabTypoStyle}
+		}
+
+		#${block_id} .${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav-btn--active")} {
+
+			background: ${tabActiveBg};
+
+			color: ${tabActiveColor};
+		}
+
+		#${block_id} .${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__panels")} {
+
+			margin-top: ${tabContentGap}px;
+			
+			background: ${contentBg};
+
+			padding:
+				${getDimVal(contentPadding)};
+
+			border-radius:
+				${contentBorderRadius}px;
+
+			${contentBorderStyle && contentBorderStyle !== "none" ? `border:
+						${contentBorderWidth}px
+						${contentBorderStyle}
+						${contentBorderColor};` : "border: none;"}
+		}
+
+		#${block_id}.${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs")} {
+
+			${wrapperBgColor ? `background: ${wrapperBgColor};` : ""}
+
+			padding:
+				${getDimVal(wrapperPadding)};
+
+			margin:
+				${getDimVal(wrapperMargin)};
+
+			border-radius:
+				${wrapperBorderRadius}px;
+		}
+
+		${hoverStyles}
+
+		${tabVisibilityStyles}
+	`;
+  const {
+    children: tabChildren,
+    ...innerBlocksPropsRest
+  } = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.useInnerBlocksProps)(blockProps, {
+    allowedBlocks: ["gutentools/tab-item"],
+    template: [["gutentools/tab-item", {
+      tabTitle: "Tab 1"
+    }], ["gutentools/tab-item", {
+      tabTitle: "Tab 2"
+    }]],
+    renderAppender: false
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("style", {
+      children: editorStyles
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.BlockControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_6__.AlignmentToolbar, {
+        value: tabAlignment,
+        onChange: tabAlignment => setAttributes({
+          tabAlignment: tabAlignment || "left"
+        })
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_inspector__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      ...props
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      ...innerBlocksPropsRest,
+      id: block_id,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+        className: (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav"),
+        children: [innerBlocks.map((block, i) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+          type: "button",
+          className: `
+								${(0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav-btn")}
+								${i === activeTabIndex ? (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__nav-btn--active") : ""}
+							`,
+          onMouseDown: e => {
+            e.preventDefault();
+            setActiveTabIndex(i);
+            wp.data.dispatch("core/block-editor").selectBlock(block.clientId);
+          },
+          children: block.attributes.tabTitle || `Tab ${i + 1}`
+        }, block.clientId)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__.Button, {
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(PlusIcon, {}),
+          onClick: addTab,
+          variant: "secondary",
+          className: (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__add-btn"),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Add Tab", "gutentools"),
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Add Tab", "gutentools")
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getClass)("tabs__panels"),
+        children: tabChildren
+      })]
     })]
   });
-}
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Edit);
 
 /***/ }),
 
-/***/ "./src/blocks/faq/components/inspector.js":
-/*!************************************************!*\
-  !*** ./src/blocks/faq/components/inspector.js ***!
-  \************************************************/
+/***/ "./src/blocks/tabs/components/inspector.js":
+/*!*************************************************!*\
+  !*** ./src/blocks/tabs/components/inspector.js ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7346,16 +6866,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _custom_control__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../custom-control */ "./src/custom-control/index.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
+/* harmony import */ var _components_exporter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/exporter */ "./src/components/exporter.js");
+/* harmony import */ var _custom_control__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../custom-control */ "./src/custom-control/index.js");
 /* harmony import */ var _custom_control_typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../custom-control/typography */ "./src/custom-control/typography.js");
 /* harmony import */ var _custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../custom-control/dimension */ "./src/custom-control/dimension.js");
-/* harmony import */ var _custom_control_icon_selector__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../custom-control/icon-selector */ "./src/custom-control/icon-selector.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../block.json */ "./src/blocks/faq/block.json");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
-/* harmony import */ var _custom_control_responsive_range_wrapper__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../custom-control/responsive-range-wrapper */ "./src/custom-control/responsive-range-wrapper.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../constants */ "./src/constants.js");
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../block.json */ "./src/blocks/tabs/block.json");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -7367,70 +6886,90 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
+const Divider = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("hr", {
+  style: {
+    margin: "12px 0"
+  }
+});
 const InspectorPanel = props => {
   const {
+    setAttributes,
     attributes: {
-      bgColor,
-      faqMargin,
-      faqPadding,
-      closeIcon,
-      openIcon,
-      titleTypo,
-      iconPosition,
-      iconBgColor,
-      iconColor,
-      titleColor,
-      faqItemPadding,
-      faqItemMargin,
-      iconRadius,
-      itemBgColor,
-      itemRadius,
-      iconSize,
-      borders
+      tabBg,
+      tabColor,
+      tabActiveBg,
+      tabActiveColor,
+      tabHoverBg,
+      tabHoverColor,
+      tabTypo,
+      tabPadding,
+      tabBorderRadius,
+      tabGap,
+      tabContentGap,
+      contentBg,
+      contentPadding,
+      contentBorderRadius,
+      contentBorderStyle,
+      contentBorderWidth,
+      contentBorderColor,
+      wrapperPadding,
+      wrapperMargin
     },
-    setAttributes
+    clientId
   } = props;
-  const def = (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.getDefaultAttr)(_block_json__WEBPACK_IMPORTED_MODULE_8__);
-  const general = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  const def = (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.getDefaultAttr)(_block_json__WEBPACK_IMPORTED_MODULE_9__);
+
+  /**
+   * General settings.
+   */
+  const general = () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "gutentools"),
     initialOpen: true,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-      className: "faq-icon-selector",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_icon_selector__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        value: openIcon,
-        icons: _constants__WEBPACK_IMPORTED_MODULE_4__.faFAQIcons,
-        prefix: "fa-solid",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select Open Icon", "gutentools"),
-        onChange: openIcon => setAttributes({
-          openIcon
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_icon_selector__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        value: closeIcon,
-        icons: _constants__WEBPACK_IMPORTED_MODULE_4__.faFAQIcons,
-        prefix: "fa-solid",
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select Close Icon", "gutentools"),
-        onChange: closeIcon => setAttributes({
-          closeIcon
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control__WEBPACK_IMPORTED_MODULE_3__.BorderControl, {
-        value: borders,
-        onChange: borders => setAttributes({
-          borders
-        })
-      })]
-    })
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tab Border Radius (px)", "gutentools"),
+      value: tabBorderRadius,
+      onChange: tabBorderRadius => setAttributes({
+        tabBorderRadius
+      }),
+      min: 0,
+      max: 40,
+      __nextHasNoMarginBottom: true,
+      __next40pxDefaultSize: true
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Gap Between Tabs (px)", "gutentools"),
+      value: tabGap,
+      onChange: tabGap => setAttributes({
+        tabGap
+      }),
+      min: 0,
+      max: 100,
+      __nextHasNoMarginBottom: true,
+      __next40pxDefaultSize: true
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Gap Between Tabs and Content (px)", "gutentools"),
+      value: tabContentGap,
+      onChange: tabContentGap => setAttributes({
+        tabContentGap
+      }),
+      min: 0,
+      max: 300,
+      __nextHasNoMarginBottom: true,
+      __next40pxDefaultSize: true
+    })]
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       group: "settings",
       children: general()
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorAdvancedControls, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_exporter__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        clientId: clientId
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       group: "styles",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-tab-panel`,
-        activeClass: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-active-tab`,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TabPanel, {
+        className: `${_constants__WEBPACK_IMPORTED_MODULE_7__.prefix}-tab-panel`,
+        activeClass: `${_constants__WEBPACK_IMPORTED_MODULE_7__.prefix}-active-tab`,
         tabs: [{
           name: "general",
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General", "gutentools"),
@@ -7444,136 +6983,157 @@ const InspectorPanel = props => {
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Advanced", "gutentools"),
           className: "tab-advanced"
         }],
-        children: tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+        children: tab => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
           className: tab.className,
-          children: [tab.name === "general" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+          children: [tab.name === "general" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
               title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("General Settings", "gutentools"),
               initialOpen: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Position", "gutentools"),
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control_typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Typography", "gutentools"),
+                value: tabTypo,
+                defaultValue: def("tabTypo"),
+                onChange: tabTypo => setAttributes({
+                  tabTypo
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Padding", "gutentools"),
+                value: tabPadding,
+                defaultValue: def("tabPadding"),
+                onChange: tabPadding => setAttributes({
+                  tabPadding
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Content Panel", "gutentools"),
+              initialOpen: false,
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Padding", "gutentools"),
+                value: contentPadding,
+                defaultValue: def("contentPadding"),
+                onChange: contentPadding => setAttributes({
+                  contentPadding
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Border Radius (px)", "gutentools"),
+                value: contentBorderRadius,
+                onChange: contentBorderRadius => setAttributes({
+                  contentBorderRadius
+                }),
+                min: 0,
+                max: 40,
+                __nextHasNoMarginBottom: true,
+                __next40pxDefaultSize: true
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Border Style", "gutentools"),
+                value: contentBorderStyle,
                 options: [{
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Right", "gutentools"),
-                  value: "right"
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("None", "gutentools"),
+                  value: "none"
                 }, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Left", "gutentools"),
-                  value: "left"
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Solid", "gutentools"),
+                  value: "solid"
+                }, {
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Dashed", "gutentools"),
+                  value: "dashed"
+                }, {
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Dotted", "gutentools"),
+                  value: "dotted"
                 }],
-                value: iconPosition,
-                onChange: iconPosition => setAttributes({
-                  iconPosition
+                onChange: contentBorderStyle => setAttributes({
+                  contentBorderStyle
                 }),
                 __nextHasNoMarginBottom: true,
                 __next40pxDefaultSize: true
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_responsive_range_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Item Radius", "gutentools"),
-                defaultValue: def("itemRadius"),
-                value: itemRadius,
-                onChange: itemRadius => setAttributes({
-                  itemRadius
-                }),
-                beforeIcon: ""
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Settings", "gutentools"),
-              initialOpen: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_responsive_range_wrapper__WEBPACK_IMPORTED_MODULE_10__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Radius", "gutentools"),
-                defaultValue: def("iconRadius"),
-                value: iconRadius,
-                onChange: iconRadius => setAttributes({
-                  iconRadius
-                }),
-                beforeIcon: ""
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Size", "gutentools"),
-                defaultValue: def("iconSize"),
-                value: iconSize,
-                onChange: iconSize => setAttributes({
-                  iconSize
-                })
+              }), contentBorderStyle !== "none" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Border Width (px)", "gutentools"),
+                  value: contentBorderWidth,
+                  onChange: contentBorderWidth => setAttributes({
+                    contentBorderWidth
+                  }),
+                  min: 1,
+                  max: 10,
+                  __nextHasNoMarginBottom: true,
+                  __next40pxDefaultSize: true
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control__WEBPACK_IMPORTED_MODULE_4__.PanelColor, {
+                  colorSettings: [{
+                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Border Color", "gutentools"),
+                    value: contentBorderColor,
+                    onChange: val => setAttributes({
+                      contentBorderColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
+                    })
+                  }, {
+                    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background", "gutentools"),
+                    value: contentBg,
+                    onChange: val => setAttributes({
+                      contentBg: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
+                    })
+                  }]
+                })]
               })]
             })]
-          }), tab.name === "design" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Color", "gutentools"),
-              initialOpen: false,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control__WEBPACK_IMPORTED_MODULE_3__.PanelColor, {
+          }), tab.name === "design" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Colors", "gutentools"),
+              initialOpen: true,
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control__WEBPACK_IMPORTED_MODULE_4__.PanelColor, {
                 colorSettings: [{
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Background Color", "gutentools"),
-                  value: bgColor,
-                  onChange: bgColor => setAttributes({
-                    bgColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.isUndefined)(bgColor) ? "" : bgColor
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tab Background", "gutentools"),
+                  value: tabBg,
+                  onChange: val => setAttributes({
+                    tabBg: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
                   })
                 }, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Title Color", "gutentools"),
-                  value: titleColor,
-                  onChange: titleColor => setAttributes({
-                    titleColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.isUndefined)(titleColor) ? "" : titleColor
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Tab Text Color", "gutentools"),
+                  value: tabColor,
+                  onChange: val => setAttributes({
+                    tabColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
                   })
                 }, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Bg Color", "gutentools"),
-                  value: iconBgColor,
-                  onChange: iconBgColor => setAttributes({
-                    iconBgColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.isUndefined)(iconBgColor) ? "" : iconBgColor
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Active Background", "gutentools"),
+                  value: tabActiveBg,
+                  onChange: val => setAttributes({
+                    tabActiveBg: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
                   })
                 }, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Icon Color", "gutentools"),
-                  value: iconColor,
-                  onChange: iconColor => setAttributes({
-                    iconColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.isUndefined)(iconColor) ? "" : iconColor
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Active Text Color", "gutentools"),
+                  value: tabActiveColor,
+                  onChange: val => setAttributes({
+                    tabActiveColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
                   })
                 }, {
-                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Item Bg Color", "gutentools"),
-                  value: itemBgColor,
-                  onChange: itemBgColor => setAttributes({
-                    itemBgColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_9__.isUndefined)(itemBgColor) ? "" : itemBgColor
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Background", "gutentools"),
+                  value: tabHoverBg,
+                  onChange: val => setAttributes({
+                    tabHoverBg: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
+                  })
+                }, {
+                  label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Hover Text Color", "gutentools"),
+                  value: tabHoverColor,
+                  onChange: val => setAttributes({
+                    tabHoverColor: (0,_helpers__WEBPACK_IMPORTED_MODULE_8__.isUndefined)(val) ? "" : val
                   })
                 }]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-              title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Typography", "gutentools"),
-              initialOpen: false,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Heading", "gutentools"),
-                value: titleTypo,
-                defaultValue: _block_json__WEBPACK_IMPORTED_MODULE_8__.attributes.titleTypo.default,
-                onChange: titleTypo => setAttributes({
-                  titleTypo
-                })
-              })
-            })]
-          }), tab.name === "advanced" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+            })
+          }), tab.name === "advanced" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
               title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Spacing", "gutentools"),
               initialOpen: true,
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Margin", "gutentools"),
-                defaultValue: def("faqMargin"),
-                value: faqMargin,
-                onChange: faqMargin => setAttributes({
-                  faqMargin
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
                 label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Padding", "gutentools"),
-                defaultValue: def("faqPadding"),
-                value: faqPadding,
-                onChange: faqPadding => setAttributes({
-                  faqPadding
+                value: wrapperPadding,
+                defaultValue: def("wrapperPadding"),
+                onChange: wrapperPadding => setAttributes({
+                  wrapperPadding
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Item Margin", "gutentools"),
-                defaultValue: def("faqItemMargin"),
-                value: faqItemMargin,
-                onChange: faqItemMargin => setAttributes({
-                  faqItemMargin
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Item Padding", "gutentools"),
-                defaultValue: def("faqItemPadding"),
-                value: faqItemPadding,
-                onChange: faqItemPadding => setAttributes({
-                  faqItemPadding
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Divider, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_custom_control_dimension__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Margin", "gutentools"),
+                value: wrapperMargin,
+                defaultValue: def("wrapperMargin"),
+                onChange: wrapperMargin => setAttributes({
+                  wrapperMargin
                 })
               })]
             })
@@ -7587,10 +7147,10 @@ const InspectorPanel = props => {
 
 /***/ }),
 
-/***/ "./src/blocks/faq/components/save.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/faq/components/save.js ***!
-  \*******************************************/
+/***/ "./src/blocks/tabs/components/save.js":
+/*!********************************************!*\
+  !*** ./src/blocks/tabs/components/save.js ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7600,55 +7160,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers */ "./src/helpers/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__);
 
 
-
-const save = props => {
-  const {
-    attributes: {
-      block_id,
-      bgColor,
-      faqMargin,
-      faqPadding
-    }
-  } = props;
-  const faqStyle = {
-    backgroundColor: bgColor,
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_1__.getDimensionStyle)("padding", faqPadding),
-    ...(0,_helpers__WEBPACK_IMPORTED_MODULE_1__.getDimensionStyle)("margin", faqMargin)
-  };
+const save = ({
+  attributes: {
+    block_id
+  }
+}) => {
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
-    id: block_id
+    className: "gutentools-tabs"
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ...blockProps,
-    style: faqStyle,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.Content, {})
+    id: block_id,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.InnerBlocks.Content, {})
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (save);
 
 /***/ }),
 
-/***/ "./src/blocks/faq/index.js":
-/*!*********************************!*\
-  !*** ./src/blocks/faq/index.js ***!
-  \*********************************/
+/***/ "./src/blocks/tabs/index.js":
+/*!**********************************!*\
+  !*** ./src/blocks/tabs/index.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.scss */ "./src/blocks/faq/styles/style.scss");
-/* harmony import */ var _components_edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/edit */ "./src/blocks/faq/components/edit.js");
-/* harmony import */ var _components_save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/save */ "./src/blocks/faq/components/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/faq/block.json");
-/* harmony import */ var _helpers_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/svg */ "./src/helpers/svg.js");
-/* harmony import */ var _faq_item_depricated_attributes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../faq-item/depricated/attributes */ "./src/blocks/faq-item/depricated/attributes.js");
+/* harmony import */ var _styles_editor_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/editor.scss */ "./src/blocks/tabs/styles/editor.scss");
+/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/style.scss */ "./src/blocks/tabs/styles/style.scss");
+/* harmony import */ var _components_edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/edit */ "./src/blocks/tabs/components/edit.js");
+/* harmony import */ var _components_save__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/save */ "./src/blocks/tabs/components/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./block.json */ "./src/blocks/tabs/block.json");
+/* harmony import */ var _helpers_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/svg */ "./src/helpers/svg.js");
 
 
 
@@ -7656,33 +7205,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  /**
-   * @see ./edit.js
-   */
-  edit: _components_edit__WEBPACK_IMPORTED_MODULE_2__["default"],
-  icon: _helpers_svg__WEBPACK_IMPORTED_MODULE_5__["default"].faq,
-  save: _components_save__WEBPACK_IMPORTED_MODULE_3__["default"],
-  depricated: [{
-    attributes: _faq_item_depricated_attributes__WEBPACK_IMPORTED_MODULE_6__.attributes,
-    save(props) {
-      console.log("[Deprecated Save] Rendering deprecated block version");
-      const {
-        attributes
-      } = props;
-      return (0,_components_save__WEBPACK_IMPORTED_MODULE_3__["default"])({
-        ...props,
-        attributes
-      });
-    }
-  }]
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
+  edit: _components_edit__WEBPACK_IMPORTED_MODULE_3__["default"],
+  icon: _helpers_svg__WEBPACK_IMPORTED_MODULE_6__["default"].tabs,
+  save: _components_save__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 
 /***/ }),
 
-/***/ "./src/blocks/faq/styles/editor.scss":
+/***/ "./src/blocks/tabs/styles/editor.scss":
+/*!********************************************!*\
+  !*** ./src/blocks/tabs/styles/editor.scss ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/blocks/tabs/styles/style.scss":
 /*!*******************************************!*\
-  !*** ./src/blocks/faq/styles/editor.scss ***!
+  !*** ./src/blocks/tabs/styles/style.scss ***!
   \*******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -7693,16 +7239,37 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/faq/styles/style.scss":
-/*!******************************************!*\
-  !*** ./src/blocks/faq/styles/style.scss ***!
-  \******************************************/
+/***/ "./src/components/exporter.js":
+/*!************************************!*\
+  !*** ./src/components/exporter.js ***!
+  \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers */ "./src/helpers/index.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__);
 
+
+
+const Exporter = ({
+  clientId
+}) => {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", {
+    className: "export-button",
+    onClick: e => (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.exportToJsonFile)(clientId),
+    children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Export Block", "gutentools"), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+      className: "dashicons dashicons-download"
+    }), " "]
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Exporter);
 
 /***/ }),
 
@@ -7758,108 +7325,6 @@ const InputGroup = ({
   })]
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputGroup);
-
-/***/ }),
-
-/***/ "./src/components/pagination.js":
-/*!**************************************!*\
-  !*** ./src/components/pagination.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-const Pagination = props => {
-  const {
-    totalRecords = null,
-    pageLimit,
-    pageNeighbours = 2,
-    initialPage,
-    onPageChanged
-  } = props;
-  const [currentPage, setCurrentPage] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(initialPage || 1);
-  const totalPages = Math.ceil(totalRecords / pageLimit);
-  const gotoPage = page => {
-    const newPage = Math.max(1, Math.min(page, totalPages));
-    setCurrentPage(newPage);
-    onPageChanged({
-      currentPage: newPage,
-      totalPages,
-      pageLimit,
-      totalRecords
-    });
-  };
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    gotoPage(initialPage || 1);
-  }, [totalRecords, pageLimit, initialPage]);
-
-  // Build the window of page numbers around the current page
-  const getPageNumbers = () => {
-    const start = Math.max(1, currentPage - pageNeighbours);
-    const end = Math.min(totalPages, currentPage + pageNeighbours);
-    return Array.from({
-      length: end - start + 1
-    }, (_, i) => start + i);
-  };
-  if (!totalPages || totalPages <= 1) return null;
-  const pageNumbers = getPageNumbers();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("nav", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination-nav`,
-    "aria-label": "Pagination",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("ul", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-pagination`,
-      children: [currentPage > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === 1 ? " disabled" : ""}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-          href: "#",
-          onClick: e => {
-            e.preventDefault();
-            if (currentPage > 1) gotoPage(currentPage - 1);
-          },
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Prev", "gutentools")
-        })
-      }), pageNumbers.map(page => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === page ? " active" : ""}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-          href: "#",
-          onClick: e => {
-            e.preventDefault();
-            gotoPage(page);
-          },
-          children: page
-        })
-      }, page)), currentPage < totalPages && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-item${currentPage === totalPages ? " disabled" : ""}`,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-          className: `${_constants__WEBPACK_IMPORTED_MODULE_2__.prefix}-page-link`,
-          href: "#",
-          onClick: e => {
-            e.preventDefault();
-            if (currentPage < totalPages) gotoPage(currentPage + 1);
-          },
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Next", "gutentools")
-        })
-      })]
-    })
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Pagination);
 
 /***/ }),
 
@@ -8517,211 +7982,6 @@ const DimensionControl = props => {
 
 /***/ }),
 
-/***/ "./src/custom-control/icon-selector.js":
-/*!*********************************************!*\
-  !*** ./src/custom-control/icon-selector.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var reactjs_popup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactjs-popup */ "./node_modules/reactjs-popup/dist/reactjs-popup.esm.js");
-/* harmony import */ var _components_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/pagination */ "./src/components/pagination.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers */ "./src/helpers/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
-
-
-
-
-
-
-
-const getPropsValue = props => {
-  return props.value || {
-    icon: "",
-    page: 1
-  };
-};
-const RenderIconSelector = props => {
-  const [state, setState] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)({
-    allSearchedIcons: [],
-    searchString: "",
-    currentIcons: [],
-    currentPage: null,
-    totalPages: null
-  });
-  const pageLimit = 16;
-  const searchInput = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    searchInput.current.focus();
-    return () => {
-      if (searchInput && searchInput.current) {
-        console.log(searchInput);
-        searchInput.current.blur();
-      }
-    };
-  }, []);
-  const isSearching = () => state.searchString !== "";
-  const onPageChanged = data => {
-    const icons = isSearching() ? state.allSearchedIcons : props.icons;
-    const {
-      totalPages,
-      currentPage
-    } = data;
-    const offset = (currentPage - 1) * pageLimit;
-    const currentIcons = icons.slice(offset, offset + pageLimit);
-    setState(prevState => ({
-      ...prevState,
-      currentPage,
-      currentIcons,
-      totalPages
-    }));
-  };
-  const onSearch = e => {
-    const allSearchedIcons = props.icons.filter(i => {
-      let temp = i.toLowerCase().replace("fa-", "");
-      return temp.match(e.target.value);
-    });
-    const currentIcons = allSearchedIcons.slice(0, pageLimit);
-    setState(prevState => ({
-      ...prevState,
-      allSearchedIcons,
-      searchString: e.target.value,
-      currentIcons
-    }));
-  };
-  const onSelect = icon => e => {
-    e.preventDefault();
-    let page = state.currentPage;
-    if (state.searchString.trim().length > 0) {
-      const i = props.icons.indexOf(icon);
-      page = Math.ceil((parseInt(i) + 1) / pageLimit);
-    }
-    props.onChange({
-      icon: icon,
-      page
-    });
-  };
-  const pageInfo = () => {
-    const {
-      currentIcons,
-      totalPages,
-      currentPage
-    } = state;
-    if (currentIcons.length <= 0) return;
-    const Page = ({
-      value
-    }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-bold`,
-      children: value
-    });
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
-      className: "search-label",
-      children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Page", "gutentools"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Page, {
-        value: currentPage
-      }), " / ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Page, {
-        value: totalPages
-      })]
-    });
-  };
-  const printIcons = () => {
-    const {
-      currentIcons
-    } = state;
-    if (currentIcons.length <= 0) return;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-items-wrapper`,
-      children: currentIcons.map((icon, index) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        className: (0,_helpers__WEBPACK_IMPORTED_MODULE_5__.classnames)({
-          active: getPropsValue(props).icon === icon
-        }),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-          onClick: onSelect(icon),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-            className: ` ${icon}`
-          })
-        }, index)
-      }, index))
-    });
-  };
-  const {
-    allSearchedIcons
-  } = state;
-  const totalIcons = isSearching() ? allSearchedIcons.length : props.icons.length;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector`,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector-search`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-        ref: searchInput,
-        type: "text",
-        value: state.searchString,
-        onChange: onSearch,
-        placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Search Icons", "gutentools")
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-search-label-wrap`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h2", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-label`,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
-          children: totalIcons
-        }), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)(" Icons", "gutentools")]
-      })
-    }), printIcons(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector-pagination`,
-      children: [pageInfo(), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_pagination__WEBPACK_IMPORTED_MODULE_3__["default"]
-      // ref="child"
-      , {
-        initialPage: getPropsValue(props).page,
-        totalRecords: totalIcons,
-        pageLimit: 16,
-        pageNeighbours: 0,
-        onPageChanged: onPageChanged
-      })]
-    })]
-  });
-};
-const IconSelector = props => {
-  var _props$label;
-  const value = getPropsValue(props);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-    className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector`,
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactjs_popup__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      trigger: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("button", {
-        className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector-button`,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-          className: `${props.prefix} ${value.icon}`
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
-          className: `${_constants__WEBPACK_IMPORTED_MODULE_4__.prefix}-icon-selector-label`,
-          children: [" ", (_props$label = props.label) !== null && _props$label !== void 0 ? _props$label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Selected Icon", "gutentools"), " "]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-          className: "fa fa-sort-down"
-        })]
-      }),
-      position: "bottom center",
-      closeOnDocumentClick: true,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(RenderIconSelector, {
-          ...props
-        })
-      })
-    })
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (IconSelector);
-(0,_helpers__WEBPACK_IMPORTED_MODULE_5__.globalize)("IconSelector", IconSelector);
-
-/***/ }),
-
 /***/ "./src/custom-control/index.js":
 /*!*************************************!*\
   !*** ./src/custom-control/index.js ***!
@@ -9117,70 +8377,6 @@ const FixedBackgroundColor = ({
   label: label ? label : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Fixed Background", "gutentools"),
   ...rest
 });
-
-/***/ }),
-
-/***/ "./src/custom-control/responsive-range-wrapper.js":
-/*!********************************************************!*\
-  !*** ./src/custom-control/responsive-range-wrapper.js ***!
-  \********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_responsive_range_control__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/responsive-range-control */ "./src/components/responsive-range-control.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
-
-
-
-
-
-const ResponsiveRangeWrapperControl = props => {
-  const onChange = (name, data) => {
-    props.onChange(data);
-  };
-  const reset = () => {
-    const {
-      onChange,
-      defaultValue
-    } = props;
-    defaultValue && onChange(defaultValue);
-  };
-  const {
-    value,
-    defaultValue,
-    step = "1",
-    beforeIcon = "editor-textcolor"
-  } = props;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_responsive_range_control__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      name: "fontSize",
-      step: step,
-      responsiveViews: _constants__WEBPACK_IMPORTED_MODULE_3__.defaultResponsiveViews,
-      value: value,
-      onChange: onChange,
-      label: props.label,
-      beforeIcon: beforeIcon
-    }), defaultValue && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: `${_constants__WEBPACK_IMPORTED_MODULE_3__.prefix}-btn-reset-wrapper`,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        onClick: reset,
-        className: `is-button is-default is-small`,
-        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Reset", "gutentools")
-      })
-    })]
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResponsiveRangeWrapperControl);
 
 /***/ }),
 
@@ -10347,28 +9543,6 @@ module.exports = window["wp"]["i18n"];
 
 /***/ }),
 
-/***/ "react":
-/*!************************!*\
-  !*** external "React" ***!
-  \************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["React"];
-
-/***/ }),
-
-/***/ "react-dom":
-/*!***************************!*\
-  !*** external "ReactDOM" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["ReactDOM"];
-
-/***/ }),
-
 /***/ "react/jsx-runtime":
 /*!**********************************!*\
   !*** external "ReactJSXRuntime" ***!
@@ -10514,8 +9688,8 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/faq/index": 0,
-/******/ 			"blocks/faq/style-index": 0
+/******/ 			"blocks/tabs/index": 0,
+/******/ 			"blocks/tabs/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -10565,7 +9739,7 @@ module.exports = window["ReactJSXRuntime"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/faq/style-index"], () => (__webpack_require__("./src/blocks/faq/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/tabs/style-index"], () => (__webpack_require__("./src/blocks/tabs/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

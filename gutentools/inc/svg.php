@@ -495,9 +495,108 @@ if( !class_exists( 'Gutentools_Icons' ) ){
                 <path d="M615 120 c-4 -7 -3 -16 3 -22 14 -14 47 -6 47 12 0 18 -40 26 -50 10z"/>
                 <path d="M705 120 c-4 -7 -3 -16 3 -22 14 -14 47 -6 47 12 0 18 -40 26 -50 10z"/>
                 </g>
-                </svg>'
+                </svg>',
+
+                'icon-list' => '<svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        aria-hidden="true"
+                        focusable="false"
+                    >
+                    <path
+                        fill="#2A43FF"
+                        d="M4 6.5A1.5 1.5 0 1 1 4 9.5 1.5 1.5 0 0 1 4 6.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 11A1.5 1.5 0 1 1 4 14 1.5 1.5 0 0 1 4 11zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5zM4 15.5A1.5 1.5 0 1 1 4 18.5 1.5 1.5 0 0 1 4 15.5zm4.25.75h12a.75.75 0 0 1 0 1.5h-12a.75.75 0 0 1 0-1.5z"
+                    />
+		        </svg>',
+                'tabs' => '<svg
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="128"
+                        height="128"
+                        viewBox="0 0 128 128"
+                    >
+                        <path
+                            d="M20 32
+                            C20 25.373 25.373 20 32 20
+                            H100
+                            C106.627 20 112 25.373 112 32
+                            V88
+                            C112 94.627 106.627 100 100 100
+                            H92
+                            V44
+                            C92 37.373 86.627 32 80 32
+                            H20 Z"
+                            fill="none"
+                            stroke="#2A43FF"
+                            stroke-width="6"
+                            stroke-linejoin="round"
+                        />
+
+                        <path
+                            d="M20 32
+                            H68
+                            C71.314 32 74 34.686 74 38
+                            V42
+                            C74 45.314 76.686 48 80 48
+                            H108"
+                            fill="none"
+                            stroke="#2A43FF"
+                            stroke-width="6"
+                            stroke-linejoin="round"
+                        />
+
+                        <path
+                            d="M20 48
+                            H92
+                            C98.627 48 104 53.373 104 60
+                            V100
+                            C104 106.627 98.627 112 92 112
+                            H20
+                            C13.373 112 8 106.627 8 100
+                            V60
+                            C8 53.373 13.373 48 20 48 Z"
+                            fill="#ffffff"
+                            stroke="#2A43FF"
+                            stroke-width="6"
+                            stroke-linejoin="round"
+                        />
+
+                        <path
+                            d="M8 72 H104"
+                            fill="none"
+                            stroke="#2A43FF"
+                            stroke-width="6"
+                        />
+
+                        <path
+                            d="M18 60 H36"
+                            fill="none"
+                            stroke="#2A43FF"
+                            stroke-width="6"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M46 58 L52 64 M52 58 L46 64"
+                            fill="none"
+                            stroke="#2A43FF"
+                            stroke-width="5"
+                            stroke-linecap="round"
+                        />
+
+                        <circle cx="82" cy="59" r="3" fill="#2A43FF"/>
+                        <circle cx="92" cy="59" r="3" fill="#2A43FF"/>
+                        <circle cx="102" cy="59" r="3" fill="#2A43FF"/>
+
+                        <circle cx="94" cy="29" r="3" fill="#2A43FF"/>
+                        <circle cx="104" cy="29" r="3" fill="#2A43FF"/>
+                    </svg>'
+
             );
 
+           
             $svg = apply_filters( 'gutentools_icons', $svg );
             return isset($svg[$icon]) ? $svg[$icon] : '<!-- SVG not found -->';
         }

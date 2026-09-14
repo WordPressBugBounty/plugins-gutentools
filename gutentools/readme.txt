@@ -4,8 +4,8 @@ Tags: Gutenberg, Block Editor, Gutenberg Templates
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.8
-Version: 1.1.8
+Stable tag: 1.1.9
+Version: 1.1.9
 License: GPLv3
 License URI: https://opensource.org/licenses/GPL-3.0
 

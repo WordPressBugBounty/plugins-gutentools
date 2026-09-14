@@ -1,0 +1,90 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/tabs/styles/editor.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+.gutentools-tabs {
+  width: 100%;
+  box-sizing: border-box;
+}
+.gutentools-tabs__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0;
+}
+.gutentools-tabs__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  line-height: 1.4;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.gutentools-tabs__add-btn.components-button {
+  margin-right: 4px;
+  height: auto;
+  padding: 6px 10px;
+  font-size: 12px;
+  gap: 4px;
+  opacity: 0.75;
+}
+.gutentools-tabs__add-btn.components-button:hover {
+  opacity: 1;
+}
+.gutentools-tabs__panels {
+  box-sizing: border-box;
+}
+
+.gutentools-tab-item {
+  display: block !important;
+  box-sizing: border-box;
+}
+.gutentools-tab-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0;
+}
+.gutentools-tab-item__title-edit {
+  flex: 1;
+  font-weight: 600;
+  font-size: 13px;
+  color: #1e1e1e;
+  min-width: 0;
+  cursor: text;
+}
+.gutentools-tab-item__title-edit .block-editor-rich-text__editable {
+  outline: none;
+}
+.gutentools-tab-item__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: rgba(220, 30, 30, 0.08);
+  color: #cc2222;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 0;
+  transition: background 0.15s ease;
+}
+.gutentools-tab-item__remove:hover, .gutentools-tab-item__remove:focus {
+  background: rgba(220, 30, 30, 0.2) !important;
+  box-shadow: none !important;
+  outline: none;
+}
+.gutentools-tab-item__content {
+  padding: 12px 0;
+}
