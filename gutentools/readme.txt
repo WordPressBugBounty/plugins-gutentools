@@ -188,6 +188,9 @@ This plugin Supports all the Themes but the following themes are highly recommen
 - Added new block Icon List
 - Updated admin notice issue
 
+= 1.1.9 =
+- Added new block Tabs
+
 
 == Upgrade Notice ==
 
@@ -252,3 +255,6 @@ This plugin Supports all the Themes but the following themes are highly recommen
 = 1.1.8 =
 - Adde new block Icon List
 - Updated admin notice issue
+
+= 1.1.9 =
+- Added new block Tabs
